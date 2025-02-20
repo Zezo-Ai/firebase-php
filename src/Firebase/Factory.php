@@ -707,6 +707,7 @@ final class Factory
             $this->serviceAccount = Json::decode($googleApplicationCredentials, true);
         }
 
+        /** @phpstan-ignore return.type */
         return $this->serviceAccount;
     }
 
