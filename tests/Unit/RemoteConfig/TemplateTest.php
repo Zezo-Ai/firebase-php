@@ -7,10 +7,12 @@ namespace Kreait\Firebase\Tests\Unit\RemoteConfig;
 use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\RemoteConfig\Condition;
 use Kreait\Firebase\RemoteConfig\ConditionalValue;
+use Kreait\Firebase\RemoteConfig\DefaultValue;
 use Kreait\Firebase\RemoteConfig\Parameter;
 use Kreait\Firebase\RemoteConfig\ParameterGroup;
 use Kreait\Firebase\RemoteConfig\TagColor;
 use Kreait\Firebase\RemoteConfig\Template;
+use Kreait\Firebase\RemoteConfig\Version;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -30,7 +32,7 @@ final class TemplateTest extends UnitTestCase
     #[Test]
     public function defaultVersionIsNull(): void
     {
-        $this->assertNull(Template::new()->version());
+        $this->assertNotInstanceOf(Version::class, Template::new()->version());
     }
 
     #[Test]
@@ -117,7 +119,7 @@ final class TemplateTest extends UnitTestCase
             ->withRemovedParameter('foo')
         ;
 
-        $this->assertCount(0, $template->parameters());
+        $this->assertEmpty($template->parameters());
     }
 
     #[Test]
@@ -128,7 +130,7 @@ final class TemplateTest extends UnitTestCase
             ->withRemovedParameterGroup('group')
         ;
 
-        $this->assertCount(0, $template->parameterGroups());
+        $this->assertEmpty($template->parameterGroups());
     }
 
     #[Test]
@@ -148,7 +150,7 @@ final class TemplateTest extends UnitTestCase
 
         $template = Template::fromArray($data);
         $this->assertArrayHasKey('foo', $parameters = $template->parameters());
-        $this->assertNotNull($defaultValue = $parameters['foo']->defaultValue());
+        $this->assertInstanceOf(DefaultValue::class, $defaultValue = $parameters['foo']->defaultValue());
 
         $this->assertArrayHasKey('personalizationValue', $array = $defaultValue->toArray());
         $this->assertSame('id', $array['personalizationValue']['personalizationId']);

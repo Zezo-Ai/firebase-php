@@ -231,7 +231,7 @@ final class MessagingTest extends IntegrationTestCase
 
         $this->assertTrue($report->hasFailures());
         $this->assertCount(2, $report->failures());
-        $this->assertCount(0, $report->successes());
+        $this->assertEmpty($report->successes());
 
         $items = $report->failures()->getItems();
 

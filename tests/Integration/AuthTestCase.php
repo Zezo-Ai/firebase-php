@@ -446,7 +446,7 @@ abstract class AuthTestCase extends IntegrationTestCase
         try {
             $this->assertInstanceOf(UserRecord::class, $check[$one->uid]);
             $this->assertInstanceOf(UserRecord::class, $check[$two->uid]);
-            $this->assertNull($check['non_existing']);
+            $this->assertNotInstanceOf(UserRecord::class, $check['non_existing']);
         } finally {
             $this->auth->deleteUser($one->uid);
             $this->auth->deleteUser($two->uid);
@@ -576,7 +576,7 @@ abstract class AuthTestCase extends IntegrationTestCase
 
         $this->assertSame(3, $result->successCount());
         $this->assertSame(0, $result->failureCount());
-        $this->assertCount(0, $result->rawErrors());
+        $this->assertEmpty($result->rawErrors());
     }
 
     #[Test]

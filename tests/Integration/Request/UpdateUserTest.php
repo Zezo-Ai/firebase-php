@@ -194,7 +194,7 @@ final class UpdateUserTest extends IntegrationTestCase
         $user = $this->auth->createAnonymousUser();
 
         try {
-            $this->assertNull($user->metadata->passwordUpdatedAt);
+            $this->assertNotInstanceOf(DateTimeImmutable::class, $user->metadata->passwordUpdatedAt);
 
             $updatedUser = $this->auth->updateUser($user->uid, ['password' => 'new-password']);
 

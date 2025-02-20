@@ -136,6 +136,6 @@ final class MessagingApiExceptionConverterTest extends TestCase
         $converted = $this->converter->convertResponse($response);
 
         $this->assertInstanceOf(ServerUnavailable::class, $converted);
-        $this->assertNull($converted->retryAfter());
+        $this->assertNotInstanceOf(DateTimeImmutable::class, $converted->retryAfter());
     }
 }

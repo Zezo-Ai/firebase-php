@@ -19,7 +19,7 @@ final class ParameterTest extends UnitTestCase
     {
         $parameter = Parameter::named('empty');
 
-        $this->assertNull($parameter->defaultValue());
+        $this->assertNotInstanceOf(DefaultValue::class, $parameter->defaultValue());
     }
 
     #[Test]

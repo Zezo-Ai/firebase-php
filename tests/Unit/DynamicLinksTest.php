@@ -101,7 +101,7 @@ final class DynamicLinksTest extends TestCase
         $dynamicLink = $this->service->createDynamicLink(['link' => 'https://example.com']);
 
         $this->assertFalse($dynamicLink->hasWarnings());
-        $this->assertCount(0, $dynamicLink->warnings());
+        $this->assertEmpty($dynamicLink->warnings());
         $this->assertSame($shortLink, (string) $dynamicLink->uri());
         $this->assertSame($shortLink, (string) $dynamicLink);
         $this->assertSame($previewLink, (string) $dynamicLink->previewUri());
@@ -160,7 +160,7 @@ final class DynamicLinksTest extends TestCase
         $dynamicLink = $this->service->shortenLongDynamicLink(['longDynamicLink' => 'https://example.com']);
 
         $this->assertFalse($dynamicLink->hasWarnings());
-        $this->assertCount(0, $dynamicLink->warnings());
+        $this->assertEmpty($dynamicLink->warnings());
         $this->assertSame($shortLink, (string) $dynamicLink->uri());
         $this->assertSame($shortLink, (string) $dynamicLink);
         $this->assertSame($previewLink, (string) $dynamicLink->previewUri());
@@ -245,34 +245,34 @@ final class DynamicLinksTest extends TestCase
 
         $this->assertCount(30, $eventStats->redirects());
         $this->assertCount(10, $eventStats->redirects()->onAndroid());
-        $this->assertCount(0, $eventStats->redirects()->onDesktop());
+        $this->assertEmpty($eventStats->redirects()->onDesktop());
         $this->assertCount(20, $eventStats->redirects()->onIOS());
         $this->assertCount(10, $eventStats->onAndroid()->redirects());
-        $this->assertCount(0, $eventStats->onDesktop()->redirects());
+        $this->assertEmpty($eventStats->onDesktop()->redirects());
         $this->assertCount(20, $eventStats->onIOS()->redirects());
 
         $this->assertCount(30, $eventStats->appInstalls());
         $this->assertCount(10, $eventStats->appInstalls()->onAndroid());
-        $this->assertCount(0, $eventStats->appInstalls()->onDesktop());
+        $this->assertEmpty($eventStats->appInstalls()->onDesktop());
         $this->assertCount(20, $eventStats->appInstalls()->onIOS());
         $this->assertCount(10, $eventStats->onAndroid()->appInstalls());
-        $this->assertCount(0, $eventStats->onDesktop()->appInstalls());
+        $this->assertEmpty($eventStats->onDesktop()->appInstalls());
         $this->assertCount(20, $eventStats->onIOS()->appInstalls());
 
         $this->assertCount(30, $eventStats->appFirstOpens());
         $this->assertCount(10, $eventStats->appFirstOpens()->onAndroid());
-        $this->assertCount(0, $eventStats->appFirstOpens()->onDesktop());
+        $this->assertEmpty($eventStats->appFirstOpens()->onDesktop());
         $this->assertCount(20, $eventStats->appFirstOpens()->onIOS());
         $this->assertCount(10, $eventStats->onAndroid()->appFirstOpens());
-        $this->assertCount(0, $eventStats->onDesktop()->appFirstOpens());
+        $this->assertEmpty($eventStats->onDesktop()->appFirstOpens());
         $this->assertCount(20, $eventStats->onIOS()->appFirstOpens());
 
         $this->assertCount(30, $eventStats->appReOpens());
         $this->assertCount(10, $eventStats->appReOpens()->onAndroid());
-        $this->assertCount(0, $eventStats->appReOpens()->onDesktop());
+        $this->assertEmpty($eventStats->appReOpens()->onDesktop());
         $this->assertCount(20, $eventStats->appReOpens()->onIOS());
         $this->assertCount(10, $eventStats->onAndroid()->appReOpens());
-        $this->assertCount(0, $eventStats->onDesktop()->appReOpens());
+        $this->assertEmpty($eventStats->onDesktop()->appReOpens());
         $this->assertCount(20, $eventStats->onIOS()->appReOpens());
     }
 

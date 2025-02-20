@@ -33,7 +33,7 @@ final class ConditionTest extends UnitTestCase
     public function itsDefaultTagColorIsNotSet(): void
     {
         $condition = Condition::named('name');
-        $this->assertNull($condition->tagColor());
+        $this->assertNotInstanceOf(TagColor::class, $condition->tagColor());
     }
 
     #[Test]
@@ -42,7 +42,7 @@ final class ConditionTest extends UnitTestCase
         $condition = Condition::named('name')->withTagColor('ORANGE');
         $expectedColor = new TagColor('ORANGE');
 
-        $this->assertNotNull($condition->tagColor());
+        $this->assertInstanceOf(TagColor::class, $condition->tagColor());
         $this->assertSame($condition->tagColor()->value(), $expectedColor->value());
     }
 
