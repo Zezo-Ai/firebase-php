@@ -77,6 +77,7 @@ final class MessagingApiExceptionConverterTest extends TestCase
         yield '404' => [self::createRequestException(404, 'Not Found'), NotFound::class];
         yield '429' => [self::createRequestException(429, 'Too Many Requests'), QuotaExceeded::class];
         yield '500' => [self::createRequestException(500, 'Server broken'), ServerError::class];
+        yield '502' => [self::createRequestException(502, 'Bad Gateway'), ServerUnavailable::class];
         yield '503' => [self::createRequestException(503, 'Server unavailable'), ServerUnavailable::class];
         yield '418' => [self::createRequestException(418, 'Some tea'), MessagingError::class];
         yield 'runtime error' => [new RuntimeException('Something else'), MessagingError::class];
@@ -104,12 +105,38 @@ final class MessagingApiExceptionConverterTest extends TestCase
     #[Test]
     public function itKnowsWhenToRetryAfterWithSeconds(): void
     {
-        $response = new Response(429, ['Retry-After' => 60]);
+        $response = new Response(429, ['Retry-After' => '60']);
 
         $converted = $this->converter->convertResponse($response);
         $expected = $this->clock->now()->modify('+60 seconds');
 
         $this->assertInstanceOf(QuotaExceeded::class, $converted);
+        $this->assertInstanceOf(DateTimeImmutable::class, $converted->retryAfter());
+        $this->assertSame($expected->getTimestamp(), $converted->retryAfter()->getTimestamp());
+    }
+
+    #[Test]
+    public function itUsesTheRetryAfterHeaderOfABadGatewayResponse(): void
+    {
+        $response = new Response(502, ['Retry-After' => '60']);
+
+        $converted = $this->converter->convertResponse($response);
+        $expected = $this->clock->now()->modify('+60 seconds');
+
+        $this->assertInstanceOf(ServerUnavailable::class, $converted);
+        $this->assertInstanceOf(DateTimeImmutable::class, $converted->retryAfter());
+        $this->assertSame($expected->getTimestamp(), $converted->retryAfter()->getTimestamp());
+    }
+
+    #[Test]
+    public function itUsesAFallbackRetryAfterOfABadGatewayResponse(): void
+    {
+        $response = new Response(status: 502);
+
+        $converted = $this->converter->convertResponse($response);
+        $expected = $this->clock->now()->modify('+30 seconds');
+
+        $this->assertInstanceOf(ServerUnavailable::class, $converted);
         $this->assertInstanceOf(DateTimeImmutable::class, $converted->retryAfter());
         $this->assertSame($expected->getTimestamp(), $converted->retryAfter()->getTimestamp());
     }

@@ -7,6 +7,10 @@ Please read about the future of the Firebase Admin PHP SDK on the
 
 ## [Unreleased]
 
+### Added
+
+* FCM Error responses with status code `502` are now caught and converted to `ServerUnavailable` exceptions.
+
 ## [7.16.1] - 2025-01-20
 
 ### Fixed
