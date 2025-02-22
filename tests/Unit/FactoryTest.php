@@ -68,10 +68,6 @@ final class FactoryTest extends UnitTestCase
         $factory->createDatabase();
         $this->addToAssertionCount(1);
 
-        // @phpstan-ignore method.deprecated
-        $factory->createDynamicLinksService();
-        $this->addToAssertionCount(1);
-
         $factory->createFirestore();
         $this->addToAssertionCount(1);
 
