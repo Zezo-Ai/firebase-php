@@ -10,7 +10,6 @@ use Kreait\Firebase\Contract\Auth;
 use Kreait\Firebase\Tests\IntegrationTestCase;
 use PHPUnit\Framework\Attributes\Test;
 
-use function current;
 use function random_int;
 
 /**
@@ -25,100 +24,53 @@ final class UserQueryTest extends IntegrationTestCase
     protected function setUp(): void
     {
         $this->auth = self::$factory->createAuth();
+        $this->ensureNumberOfUsers(2);
     }
 
     #[Test]
-    public function sortByField(): void
+    public function itReturnsResultsInAscendingOrder(): void
     {
-        $user = $this->createUserWithEmailAndPassword();
+        $query = UserQuery::all()
+            ->withLimit(2)
+            ->sortedBy(UserQuery::FIELD_CREATED_AT)
+            ->inAscendingOrder();
 
-        // Another test could have created a user in-between, so we fetch more than we actually need
-        $result = $this->auth->queryUsers([
-            'sortBy' => UserQuery::FIELD_CREATED_AT,
-            'order' => UserQuery::ORDER_DESC,
-            'limit' => 10,
-        ]);
+        $users = $this->auth->queryUsers($query);
 
-        try {
-            $this->assertUserExists($user, $result);
-        } finally {
-            $this->auth->deleteUser($user->uid);
-        }
+        $first = array_shift($users);
+        $second = array_shift($users);
+
+        $this->assertInstanceOf(UserRecord::class, $first);
+        $this->assertInstanceOf(UserRecord::class, $second);
+
+        $this->assertGreaterThan($first->metadata->createdAt, $second->metadata->createdAt);
     }
 
     #[Test]
-    public function ascendingSortOrder(): void
+    public function itReturnsResultsInDescendingOrder(): void
     {
-        // Create two users just in case there are no others in the database
-        $earlier = $this->createUserWithEmailAndPassword();
-        $later = $this->createUserWithEmailAndPassword();
+        $query = UserQuery::all()
+            ->withLimit(2)
+            ->sortedBy(UserQuery::FIELD_CREATED_AT)
+            ->inDescendingOrder();
 
-        $query = [
-            'sortBy' => UserQuery::FIELD_CREATED_AT,
-            'order' => UserQuery::ORDER_ASC,
-            'limit' => 2,
-        ];
+        $users = $this->auth->queryUsers($query);
 
-        $result = $this->auth->queryUsers($query);
-        $firstResult = array_shift($result);
-        $secondResult = array_shift($result);
+        $first = array_shift($users);
+        $second = array_shift($users);
 
-        try {
-            $this->assertInstanceOf(UserRecord::class, $firstResult);
-            $this->assertInstanceOf(UserRecord::class, $secondResult);
-            $this->assertGreaterThanOrEqual($firstResult->metadata->createdAt, $secondResult->metadata->createdAt);
-        } finally {
-            $this->auth->deleteUser($earlier->uid);
-            $this->auth->deleteUser($later->uid);
-        }
-    }
+        $this->assertInstanceOf(UserRecord::class, $first);
+        $this->assertInstanceOf(UserRecord::class, $second);
 
-    #[Test]
-    public function descendingSortOrder(): void
-    {
-        // Create two users just in case there are no others in the database
-        $earlier = $this->createUserWithEmailAndPassword();
-        $later = $this->createUserWithEmailAndPassword();
-
-        $query = [
-            'sortBy' => UserQuery::FIELD_CREATED_AT,
-            'order' => UserQuery::ORDER_DESC,
-            'limit' => 2,
-        ];
-
-        $result = $this->auth->queryUsers($query);
-        $firstResult = array_shift($result);
-        $secondResult = array_shift($result);
-
-        try {
-            $this->assertInstanceOf(UserRecord::class, $firstResult);
-            $this->assertInstanceOf(UserRecord::class, $secondResult);
-            $this->assertLessThanOrEqual($firstResult->metadata->createdAt, $secondResult->metadata->createdAt);
-        } finally {
-            $this->auth->deleteUser($earlier->uid);
-            $this->auth->deleteUser($later->uid);
-        }
+        $this->assertLessThan($first->metadata->createdAt, $second->metadata->createdAt);
     }
 
     #[Test]
     public function limit(): void
     {
-        // Create two users just in case there are no others in the database
-        $firstUser = $this->createUserWithEmailAndPassword();
-        $secondUser = $this->createUserWithEmailAndPassword();
+        $result = $this->auth->queryUsers(UserQuery::all()->withLimit(1));
 
-        $query = [
-            'limit' => 1,
-        ];
-
-        $result = $this->auth->queryUsers($query);
-
-        try {
-            $this->assertCount(1, $result);
-        } finally {
-            $this->auth->deleteUser($firstUser->uid);
-            $this->auth->deleteUser($secondUser->uid);
-        }
+        $this->assertCount(1, $result);
     }
 
     #[Test]
@@ -130,16 +82,14 @@ final class UserQueryTest extends IntegrationTestCase
             'filter' => [
                 'userId' => $user->uid,
             ],
-            'limit' => 1,
         ];
 
         $result = $this->auth->queryUsers($query);
-        $found = current($result);
 
         try {
             $this->assertCount(1, $result);
-            $this->assertInstanceOf(UserRecord::class, $found);
-            $this->assertSame($user->uid, $found->uid);
+            $this->assertArrayHasKey($user->uid, $result);
+            $this->assertSame($user->uid, $result[$user->uid]->uid);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -154,16 +104,14 @@ final class UserQueryTest extends IntegrationTestCase
             'filter' => [
                 'email' => $user->email,
             ],
-            'limit' => 1,
         ];
 
         $result = $this->auth->queryUsers($query);
-        $found = current($result);
 
         try {
             $this->assertCount(1, $result);
-            $this->assertInstanceOf(UserRecord::class, $found);
-            $this->assertSame($user->email, $found->email);
+            $this->assertArrayHasKey($user->uid, $result);
+            $this->assertSame($user->email, $result[$user->uid]->email);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -180,16 +128,14 @@ final class UserQueryTest extends IntegrationTestCase
             'filter' => [
                 'phoneNumber' => $user->phoneNumber,
             ],
-            'limit' => 1,
         ];
 
         $result = $this->auth->queryUsers($query);
-        $found = current($result);
 
         try {
             $this->assertCount(1, $result);
-            $this->assertInstanceOf(UserRecord::class, $found);
-            $this->assertSame($user->phoneNumber, $found->phoneNumber);
+            $this->assertArrayHasKey($user->uid, $result);
+            $this->assertSame($user->phoneNumber, $result[$user->uid]->phoneNumber);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -207,18 +153,16 @@ final class UserQueryTest extends IntegrationTestCase
     }
 
     /**
-     * @param array<UserRecord> $queryResult
+     * @param positive-int $expected
      */
-    private function assertUserExists(UserRecord $userRecord, array $queryResult): void
+    private function ensureNumberOfUsers(int $expected): void
     {
-        foreach ($queryResult as $record) {
-            if ($record->uid === $userRecord->uid) {
-                $this->addToAssertionCount(1);
+        $present = $this->auth->queryUsers(UserQuery::all()->withLimit($expected));
+        $count = count($present);
 
-                return;
-            }
+        while ($count < $expected) {
+            $this->createUserWithEmailAndPassword();
+            $count++;
         }
-
-        $this->fail('Expected query result to contain a user with UID '.$userRecord->uid);
     }
 }
