@@ -44,17 +44,17 @@ final class OrderByKeyTest extends UnitTestCase
     public static function valueProvider(): Iterator
     {
         yield 'scalar' => [
-            'expected' => 'scalar',
-            'given' => 'scalar',
+            'scalar',
+            'scalar',
         ];
         yield 'array' => [
-            'expected' => [
+            [
                 'a' => 'any',
                 'b' => 'any',
                 'c' => 'any',
                 'd' => 'any',
             ],
-            'given' => [
+            [
                 'c' => 'any',
                 'a' => 'any',
                 'd' => 'any',

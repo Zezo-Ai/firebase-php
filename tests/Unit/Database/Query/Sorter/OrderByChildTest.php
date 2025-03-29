@@ -36,19 +36,19 @@ final class OrderByChildTest extends UnitTestCase
     public static function valueProvider(): Iterator
     {
         yield 'scalar' => [
-            'childKey' => 'key',
-            'expected' => 'scalar',
-            'given' => 'scalar',
+            'key',
+            'scalar',
+            'scalar',
         ];
         yield 'array' => [
-            'childKey' => 'key',
-            'expected' => [
+            'key',
+            [
                 'third' => ['key' => 1],
                 'fourth' => ['key' => 2],
                 'first' => ['key' => 3],
                 'second' => ['key' => 4],
             ],
-            'given' => [
+            [
                 'first' => ['key' => 3],
                 'second' => ['key' => 4],
                 'third' => ['key' => 1],
@@ -56,14 +56,14 @@ final class OrderByChildTest extends UnitTestCase
             ],
         ];
         yield 'nested' => [
-            'childKey' => 'child/grandchild',
-            'expected' => [
+            'child/grandchild',
+            [
                 'third' => ['child' => ['grandchild' => 1]],
                 'fourth' => ['child' => ['grandchild' => 2]],
                 'first' => ['child' => ['grandchild' => 3]],
                 'second' => ['child' => ['grandchild' => 4]],
             ],
-            'given' => [
+            [
                 'first' => ['child' => ['grandchild' => 3]],
                 'second' => ['child' => ['grandchild' => 4]],
                 'third' => ['child' => ['grandchild' => 1]],
@@ -71,14 +71,14 @@ final class OrderByChildTest extends UnitTestCase
             ],
         ];
         yield 'super_nested' => [
-            'childKey' => 'child/grandchild/great_grandchild',
-            'expected' => [
+            'child/grandchild/great_grandchild',
+            [
                 'third' => ['child' => ['grandchild' => ['great_grandchild' => 1]]],
                 'fourth' => ['child' => ['grandchild' => ['great_grandchild' => 2]]],
                 'first' => ['child' => ['grandchild' => ['great_grandchild' => 3]]],
                 'second' => ['child' => ['grandchild' => ['great_grandchild' => 4]]],
             ],
-            'given' => [
+            [
                 'first' => ['child' => ['grandchild' => ['great_grandchild' => 3]]],
                 'second' => ['child' => ['grandchild' => ['great_grandchild' => 4]]],
                 'third' => ['child' => ['grandchild' => ['great_grandchild' => 1]]],
