@@ -21,6 +21,11 @@ final class FirestoreTest extends IntegrationTestCase
     #[Test]
     public function itUsesTheDefaultDatabaseByDefault(): void
     {
+        // @see https://github.com/grpc/grpc/issues/38184
+        // @see https://github.com/googleapis/gax-php/issues/584
+        // @see https://www.php.net/manual/en/info.configuration.php#ini.zend.reserved-stack-size
+        $this->markTestSkipped('Skipped because of an infinite recursion with certain PHP/gRPC versions.');
+        // @phpstan-ignore-next-line
         $collection = __FUNCTION__;
         $documentName = __FUNCTION__.self::randomString();
 
@@ -40,6 +45,11 @@ final class FirestoreTest extends IntegrationTestCase
     #[Test]
     public function testItCannotConnectToAnUnknownDatabase(): void
     {
+        // @see https://github.com/grpc/grpc/issues/38184
+        // @see https://github.com/googleapis/gax-php/issues/584
+        // @see https://www.php.net/manual/en/info.configuration.php#ini.zend.reserved-stack-size
+        $this->markTestSkipped('Skipped because of an infinite recursion with certain PHP/gRPC versions.');
+        // @phpstan-ignore-next-line
         $name = self::randomString();
 
         $database = self::$factory->createFirestore($name)->database();
