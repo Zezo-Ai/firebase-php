@@ -94,10 +94,10 @@ final class ApnsConfigTest extends UnitTestCase
     {
         $config = ApnsConfig::fromArray(['live_activity_token' => 'token']);
 
-        $payload = Json::decode(Json::encode($config), true);
-
-        $this->assertArrayHasKey('live_activity_token', $payload);
-        $this->assertSame('token', $payload['live_activity_token']);
+        $this->assertJsonStringEqualsJsonString(
+            Json::encode($config),
+            Json::encode(ApnsConfig::new()->withLiveActivityToken('token')),
+        );
     }
 
     #[Test]
