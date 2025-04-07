@@ -12,6 +12,8 @@ Please read about the future of the Firebase Admin PHP SDK on the
 * You can now save on method call by passing a custom Firestore database name to
   `Kreait\Firebase\Factory::createFirestore($databaseName)` instead of having to chain
   ``::withFirestoreDatabase($databaseName)->createFirestore()``
+* It is now possible to set [live activity tokens](https://firebase.google.com/docs/cloud-messaging/ios/live-activity)
+  in Apns configs.
 
 ### Deprecated
 

@@ -90,6 +90,17 @@ final class ApnsConfigTest extends UnitTestCase
     }
 
     #[Test]
+    public function itCanBeGivenALiveActivityToken(): void
+    {
+        $config = ApnsConfig::fromArray(['live_activity_token' => 'token']);
+
+        $payload = Json::decode(Json::encode($config), true);
+
+        $this->assertArrayHasKey('live_activity_token', $payload);
+        $this->assertSame('token', $payload['live_activity_token']);
+    }
+
+    #[Test]
     public function itHasASubtitle(): void
     {
         $expected = [
@@ -123,6 +134,7 @@ final class ApnsConfigTest extends UnitTestCase
                     'sound' => 'default',
                 ],
             ],
+            'live_activity_token' => 'token',
         ]];
     }
 }
