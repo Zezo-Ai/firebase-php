@@ -69,13 +69,25 @@ final class ApnsConfigTest extends UnitTestCase
     }
 
     #[Test]
-    public function itCanHaveAPriority(): void
+    public function itCanHaveAnImmediatePriority(): void
     {
         $config = ApnsConfig::new()->withImmediatePriority();
-        $this->assertSame('10', $config->jsonSerialize()['headers']['apns-priority']);
+        $payload = Json::decode(Json::encode($config), true);
 
+        $this->assertArrayHasKey('headers', $payload);
+        $this->assertArrayHasKey('apns-priority', $payload['headers']);
+        $this->assertSame('10', $payload['headers']['apns-priority']);
+    }
+
+    #[Test]
+    public function itCanHaveAPowerConservingPriority(): void
+    {
         $config = ApnsConfig::new()->withPowerConservingPriority();
-        $this->assertSame('5', $config->jsonSerialize()['headers']['apns-priority']);
+        $payload = Json::decode(Json::encode($config), true);
+
+        $this->assertArrayHasKey('headers', $payload);
+        $this->assertArrayHasKey('apns-priority', $payload['headers']);
+        $this->assertSame('5', $payload['headers']['apns-priority']);
     }
 
     #[Test]
