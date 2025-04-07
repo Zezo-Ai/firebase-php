@@ -36,8 +36,8 @@ final class ApnsConfig implements JsonSerializable
      * @param array<non-empty-string, string> $fcmOptions
      */
     private function __construct(
-        private array $headers,
-        private array $payload,
+        private readonly array $headers,
+        private readonly array $payload,
         private readonly array $fcmOptions,
     ) {
     }
@@ -65,10 +65,14 @@ final class ApnsConfig implements JsonSerializable
      */
     public function withHeader(string $name, string $value): self
     {
-        $config = clone $this;
-        $config->headers[$name] = $value;
+        $headers = $this->headers;
+        $headers[$name] = $value;
 
-        return $config;
+        return new self(
+            headers: $headers,
+            payload: $this->payload,
+            fcmOptions: $this->fcmOptions,
+        );
     }
 
     public function hasHeader(string $name): bool
@@ -81,11 +85,15 @@ final class ApnsConfig implements JsonSerializable
      */
     public function withApsField(string $key, mixed $value): self
     {
-        $config = clone $this;
-        $config->payload['aps'] ??= [];
-        $config->payload['aps'][$key] = $value;
+        $payload = $this->payload;
+        $payload['aps'] ??= [];
+        $payload['aps'][$key] = $value;
 
-        return $config;
+        return new self(
+            headers: $this->headers,
+            payload: $payload,
+            fcmOptions: $this->fcmOptions,
+        );
     }
 
     /**
@@ -97,10 +105,14 @@ final class ApnsConfig implements JsonSerializable
             throw new InvalidArgument('"aps" is a reserved field name');
         }
 
-        $config = clone $this;
-        $config->payload[$name] = $value;
+        $payload = $this->payload;
+        $payload[$name] = $value;
 
-        return $config;
+        return new self(
+            headers: $this->headers,
+            payload: $payload,
+            fcmOptions: $this->fcmOptions,
+        );
     }
 
     public function withDefaultSound(): self
@@ -185,6 +197,9 @@ final class ApnsConfig implements JsonSerializable
         ], $filter);
     }
 
+    /**
+     * @return ApnsConfigShape
+     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

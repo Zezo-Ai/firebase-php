@@ -64,7 +64,6 @@ final class ApnsConfigTest extends UnitTestCase
     public function itCanBeCreatedFromAnArray(array $data): void
     {
         $config = ApnsConfig::fromArray($data);
-
         $this->assertEqualsCanonicalizing($data, $config->jsonSerialize());
     }
 
