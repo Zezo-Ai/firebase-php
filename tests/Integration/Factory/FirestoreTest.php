@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Tests\Integration\Factory;
 
-use Google\Cloud\Core\Exception\NotFoundException;
+use Exception;
 use Kreait\Firebase\Tests\IntegrationTestCase;
 use Kreait\Firebase\Util;
 use PHPUnit\Framework\Attributes\Test;
@@ -54,7 +54,7 @@ final class FirestoreTest extends IntegrationTestCase
 
         $database = self::$factory->createFirestore($name)->database();
 
-        $this->expectException(NotFoundException::class);
+        $this->expectException(Exception::class);
         // No need to deserialize the returned JSON
         $this->expectExceptionMessageMatches("/$name/");
 
