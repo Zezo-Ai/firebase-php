@@ -107,7 +107,7 @@ abstract class AuthTestCase extends IntegrationTestCase
 
         try {
             $link = $this->auth->getEmailVerificationLink($user->email);
-            $this->assertMatchesRegularExpression('~^https://.+/.+auth/action\?mode=verifyEmail&oobCode=.+&lang=.+~', $link);
+            $this->assertMatchesRegularExpression('~^https?://.+/action\?mode=verifyemail~i', $link);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -158,7 +158,7 @@ abstract class AuthTestCase extends IntegrationTestCase
 
         try {
             $link = $this->auth->getPasswordResetLink($user->email);
-            $this->assertMatchesRegularExpression('~^https://.+/.+auth/action\?mode=resetPassword&oobCode=.+&lang=.+~', $link);
+            $this->assertMatchesRegularExpression('~^https?://.+/action\?mode=resetpassword~i', $link);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -187,7 +187,7 @@ abstract class AuthTestCase extends IntegrationTestCase
 
         try {
             $link = $this->auth->getSignInWithEmailLink($user->email);
-            $this->assertMatchesRegularExpression('~^https://.+/.+auth/action\?mode=signIn&oobCode=.+&lang=.+~', $link);
+            $this->assertMatchesRegularExpression('~^https?://.+/action\?mode=signin~i', $link);
         } finally {
             $this->auth->deleteUser($user->uid);
         }

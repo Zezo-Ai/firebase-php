@@ -122,6 +122,9 @@
             "Composer\\Config::disableProcessTimeout",
             "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html=.build/coverage"
         ],
+        "test-emulator": [
+            "FIREBASE_AUTH_EMULATOR_HOST=localhost:9099 FIREBASE_DATABASE_EMULATOR_HOST=localhost:9100 firebase emulators:exec --only auth,database --project beste-firebase 'XDEBUG_MODE=coverage vendor/bin/phpunit --group=emulator'"
+        ],
         "test-units": [
             "vendor/bin/phpunit --testsuite=unit"
         ],
