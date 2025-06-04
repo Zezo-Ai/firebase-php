@@ -106,7 +106,7 @@ abstract class AuthTestCase extends IntegrationTestCase
         assert(is_string($user->email));
 
         try {
-            $link = $this->auth->getEmailVerificationLink((string) $user->email);
+            $link = $this->auth->getEmailVerificationLink($user->email);
             $this->assertMatchesRegularExpression('~^https://.+/.+auth/action\?mode=verifyEmail&oobCode=.+&lang=.+~', $link);
         } finally {
             $this->auth->deleteUser($user->uid);
@@ -121,7 +121,7 @@ abstract class AuthTestCase extends IntegrationTestCase
         assert(is_string($user->email));
 
         try {
-            $this->auth->sendEmailVerificationLink((string) $user->email);
+            $this->auth->sendEmailVerificationLink($user->email);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -157,7 +157,7 @@ abstract class AuthTestCase extends IntegrationTestCase
         assert(is_string($user->email));
 
         try {
-            $link = $this->auth->getPasswordResetLink((string) $user->email);
+            $link = $this->auth->getPasswordResetLink($user->email);
             $this->assertMatchesRegularExpression('~^https://.+/.+auth/action\?mode=resetPassword&oobCode=.+&lang=.+~', $link);
         } finally {
             $this->auth->deleteUser($user->uid);
@@ -172,7 +172,7 @@ abstract class AuthTestCase extends IntegrationTestCase
         assert(is_string($user->email));
 
         try {
-            $this->auth->sendPasswordResetLink((string) $user->email);
+            $this->auth->sendPasswordResetLink($user->email);
             // We can't test the reception, but if we don't get an error, we consider it working
         } finally {
             $this->auth->deleteUser($user->uid);
