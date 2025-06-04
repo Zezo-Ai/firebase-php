@@ -41,13 +41,34 @@ final class AuthVariableOverrideTest extends DatabaseTestCase
         $uid = $this->auth->signInAnonymously()->firebaseUserId();
         assert(is_string($uid));
 
+        $this->database()->getReference(self::$refPrefix)->getChild(__FUNCTION__)->set(__FUNCTION__);
+
         $this->publishRules(__FUNCTION__, ['.read' => 'auth.uid === "'.$uid.'"']);
 
         try {
             $db = $this->databaseWithAuthOverride(['uid' => $uid]);
 
-            $db->getReference(self::$refPrefix)->getChild(__FUNCTION__)->getValue();
-            $this->addToAssertionCount(1);
+            $reference = $db->getReference(self::$refPrefix)->getChild(__FUNCTION__);
+
+            $this->assertSame(__FUNCTION__, $reference->getValue());
+        } finally {
+            $this->auth->deleteUser($uid);
+        }
+    }
+
+    #[Test]
+    public function itCanNotSetTheValueOfAReferenceIfItIsOnlyAllowedToRead(): void
+    {
+        $uid = $this->auth->signInAnonymously()->firebaseUserId();
+        assert(is_string($uid));
+
+        $this->publishRules(__FUNCTION__, ['.read' => 'auth.uid === "'.$uid.'"']);
+
+        try {
+            $db = $this->databaseWithAuthOverride(['uid' => $uid]);
+
+            $this->expectException(PermissionDenied::class);
+            $db->getReference(self::$refPrefix)->getChild(__FUNCTION__)->set('not allowed');
         } finally {
             $this->auth->deleteUser($uid);
         }
@@ -79,14 +100,15 @@ final class AuthVariableOverrideTest extends DatabaseTestCase
 
         $this->publishRules(__FUNCTION__, ['.read' => true]);
 
+        $this->database()->getReference(self::$refPrefix)->getChild(__FUNCTION__)->set(__FUNCTION__);
+
         try {
-            $this->databaseWithAuthOverride(null)
+            $reference = $this->databaseWithAuthOverride(null)
                 ->getReference(self::$refPrefix)
                 ->getChild(__FUNCTION__)
-                ->getValue()
             ;
 
-            $this->addToAssertionCount(1);
+            $this->assertSame(__FUNCTION__, $reference->getValue());
         } finally {
             $this->auth->deleteUser($uid);
         }
@@ -121,6 +143,17 @@ final class AuthVariableOverrideTest extends DatabaseTestCase
         ];
 
         self::$db->updateRules(RuleSet::fromArray($rules));
+    }
+
+    private function database(): Database
+    {
+        // If the RTDB Url is not set, the database tests are already skipped
+        assert(self::$rtdbUrl !== null);
+
+        return self::$factory
+            ->withDatabaseUri(self::$rtdbUrl)
+            ->createDatabase()
+        ;
     }
 
     /**

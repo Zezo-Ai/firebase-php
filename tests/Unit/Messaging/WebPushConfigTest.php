@@ -9,6 +9,7 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 
 /**
@@ -50,13 +51,12 @@ final class WebPushConfigTest extends UnitTestCase
     /**
      * @param WebPushHeadersShape $headers
      */
+    #[DoesNotPerformAssertions]
     #[DataProvider('validHeaders')]
     #[Test]
     public function itAcceptsValidHeaders(array $headers): void
     {
         WebPushConfig::fromArray(['headers' => $headers]);
-
-        $this->addToAssertionCount(1);
     }
 
     /**

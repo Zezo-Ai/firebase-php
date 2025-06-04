@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use Iterator;
 use Kreait\Firebase\Messaging\MessageData;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Stringable;
@@ -22,12 +23,12 @@ final class MessageDataTest extends TestCase
     /**
      * @param array<non-empty-string, Stringable|string> $data
      */
+    #[DoesNotPerformAssertions]
     #[DataProvider('validData')]
     #[Test]
     public function itAcceptsValidData(array $data): void
     {
         MessageData::fromArray($data);
-        $this->addToAssertionCount(1);
     }
 
     /**

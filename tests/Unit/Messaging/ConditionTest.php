@@ -37,8 +37,8 @@ final class ConditionTest extends TestCase
         $valid = "'a' in topics && 'b' in topics || 'c' in topics || 'd' in topics || 'e' in topics";
         $invalid = $valid." || 'f' in topics";
 
+        // This should not throw an exception
         Condition::fromValue($valid);
-        $this->addToAssertionCount(1);
 
         $this->expectException(InvalidArgument::class);
         Condition::fromValue($invalid);

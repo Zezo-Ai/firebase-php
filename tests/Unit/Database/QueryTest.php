@@ -52,9 +52,9 @@ final class QueryTest extends UnitTestCase
     {
         $this->apiClient->method('get')->with($this->anything())->willReturn('value');
 
-        $this->query->orderByKey()->equalTo(2)->getSnapshot();
+        $snapshot = $this->query->orderByKey()->equalTo(2)->getSnapshot();
 
-        $this->addToAssertionCount(1);
+        $this->assertSame('value', $snapshot->getValue());
     }
 
     #[Test]

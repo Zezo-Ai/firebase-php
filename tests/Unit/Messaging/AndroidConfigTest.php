@@ -10,6 +10,7 @@ use Kreait\Firebase\Exception\Messaging\InvalidArgument;
 use Kreait\Firebase\Messaging\AndroidConfig;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 
 /**
@@ -62,6 +63,7 @@ final class AndroidConfigTest extends UnitTestCase
         $this->assertEqualsCanonicalizing($data, $config->jsonSerialize());
     }
 
+    #[DoesNotPerformAssertions]
     #[DataProvider('validTtlValues')]
     #[Test]
     public function itAcceptsValidTTLs(int|string|null $ttl): void
@@ -69,8 +71,6 @@ final class AndroidConfigTest extends UnitTestCase
         AndroidConfig::fromArray([
             'ttl' => $ttl,
         ]);
-
-        $this->addToAssertionCount(1);
     }
 
     #[DataProvider('invalidTtlValues')]

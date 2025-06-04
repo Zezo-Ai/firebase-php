@@ -89,7 +89,11 @@ final class GuzzleHandlerTest extends UnitTestCase
             'expires_in' => 3600,
         ], JSON_FORCE_OBJECT)));
 
-        $this->handler->handle($this->action);
-        $this->addToAssertionCount(1);
+        $result = $this->handler->handle($this->action);
+
+        $this->assertSame('id_token', $result->idToken());
+        $this->assertSame('refresh_token', $result->refreshToken());
+        $this->assertSame('access_token', $result->accessToken());
+        $this->assertSame(3600, $result->ttl());
     }
 }

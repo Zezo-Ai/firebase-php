@@ -7,6 +7,7 @@ namespace Kreait\Firebase\Tests\Unit;
 use Beste\Json;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Tests\UnitTestCase;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 
 use function putenv;
@@ -34,6 +35,7 @@ final class FactoryTest extends UnitTestCase
         $this->serviceAccountArray = Json::decodeFile($this->serviceAccountFilePath, true);
     }
 
+    #[DoesNotPerformAssertions]
     #[Test]
     public function itUsesTheCredentialsFromTheGoogleApplicationCredentialsEnvironmentVariable(): void
     {
@@ -44,6 +46,7 @@ final class FactoryTest extends UnitTestCase
         putenv('GOOGLE_APPLICATION_CREDENTIALS');
     }
 
+    #[DoesNotPerformAssertions]
     #[Test]
     public function itCanBeConfiguredWithThePathToAServiceAccount(): void
     {
@@ -52,6 +55,7 @@ final class FactoryTest extends UnitTestCase
         $this->assertServices($factory);
     }
 
+    #[DoesNotPerformAssertions]
     #[Test]
     public function itCanBeConfiguredWithAServiceAccountArray(): void
     {
@@ -63,21 +67,10 @@ final class FactoryTest extends UnitTestCase
     private function assertServices(Factory $factory): void
     {
         $factory->createAuth();
-        $this->addToAssertionCount(1);
-
         $factory->createDatabase();
-        $this->addToAssertionCount(1);
-
         $factory->createFirestore();
-        $this->addToAssertionCount(1);
-
         $factory->createMessaging();
-        $this->addToAssertionCount(1);
-
         $factory->createRemoteConfig();
-        $this->addToAssertionCount(1);
-
         $factory->createStorage();
-        $this->addToAssertionCount(1);
     }
 }

@@ -98,14 +98,16 @@ final class TransactionTest extends DatabaseTestCase
     public function aValueCanBeDeleted(): void
     {
         $ref = $this->ref->getChild(__FUNCTION__);
+        $ref->set('value');
 
-        self::$db->runTransaction(static function (Transaction $transaction) use ($ref): void {
-            $transaction->snapshot($ref);
+        self::$db->runTransaction(function (Transaction $transaction) use ($ref): void {
+            $snapshot = $transaction->snapshot($ref);
 
+            $this->assertSame('value', $snapshot->getValue());
+
+            // This should not throw an exception
             $transaction->remove($ref);
         });
-
-        $this->addToAssertionCount(1);
     }
 
     #[Test]

@@ -140,8 +140,11 @@ final class MessagingTest extends IntegrationTestCase
             ->toToken($this->getTestRegistrationToken());
         ;
 
-        $this->messaging->send($message);
-        $this->addToAssertionCount(1);
+        $result = $this->messaging->send($message);
+
+        $this->assertArrayHasKey('name', $result);
+        $this->assertIsString($result['name']);
+        $this->assertMatchesRegularExpression('~^projects/[^/]+/messages/.+~', $result['name']);
     }
 
     /**
@@ -156,8 +159,14 @@ final class MessagingTest extends IntegrationTestCase
             ->toToken($this->getTestRegistrationToken());
         ;
 
+        $result = $this->messaging->send($message);
+
+        $this->assertArrayHasKey('name', $result);
+        $this->assertIsString($result['name']);
+        $this->assertMatchesRegularExpression('~^projects/[^/]+/messages/.+~', $result['name']);
+
+        // This shouldn't throw an exception
         $this->messaging->send($message);
-        $this->addToAssertionCount(1);
     }
 
     public static function reservedKeywordsThatStillAreAccepted(): Iterator

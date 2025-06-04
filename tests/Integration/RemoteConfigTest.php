@@ -18,6 +18,7 @@ use Kreait\Firebase\RemoteConfig\UpdateType;
 use Kreait\Firebase\RemoteConfig\Version;
 use Kreait\Firebase\RemoteConfig\VersionNumber;
 use Kreait\Firebase\Tests\IntegrationTestCase;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
 use PHPUnit\Framework\Attributes\Test;
 use Throwable;
 
@@ -225,11 +226,12 @@ final class RemoteConfigTest extends IntegrationTestCase
         $this->remoteConfig->publish($published);
     }
 
+    #[DoesNotPerformAssertions]
     #[Test]
     public function validateValidTemplate(): void
     {
+        // This should not throw an exception
         $this->remoteConfig->validate($this->template);
-        $this->addToAssertionCount(1);
     }
 
     #[Test]
@@ -400,11 +402,12 @@ final class RemoteConfigTest extends IntegrationTestCase
         $this->remoteConfig->getVersion($nextButNonExisting);
     }
 
+    #[DoesNotPerformAssertions]
     #[Test]
     public function validateEmptyTemplate(): void
     {
+        // This should not throw an exception
         $this->remoteConfig->validate(Template::new());
-        $this->addToAssertionCount(1);
     }
 
     private function templateWithTooManyParameters(): Template
