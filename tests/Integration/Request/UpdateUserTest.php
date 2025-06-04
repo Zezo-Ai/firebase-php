@@ -32,7 +32,7 @@ final class UpdateUserTest extends IntegrationTestCase
     #[Test]
     public function removePhotoUrl(): void
     {
-        $photoUrl = 'http://example.com/a_photo.jpg';
+        $photoUrl = 'https://example.com/a_photo.jpg';
 
         $user = $this->auth->createUser(CreateUser::new()->withPhotoUrl($photoUrl));
         $this->assertSame($user->photoUrl, $photoUrl);

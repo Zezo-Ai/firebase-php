@@ -27,7 +27,7 @@ final class OrderByChildTest extends UnitTestCase
 
         $this->assertStringContainsString(
             'orderBy='.rawurlencode(sprintf('"%s"', $childKey)),
-            (string) $sut->modifyUri(new Uri('http://example.com')),
+            (string) $sut->modifyUri(new Uri('https://example.com')),
         );
 
         $this->assertSame($expected, $sut->modifyValue($given));

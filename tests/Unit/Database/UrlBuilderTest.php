@@ -35,7 +35,7 @@ final class UrlBuilderTest extends UnitTestCase
 
     public static function invalidUrls(): Iterator
     {
-        yield 'wrong scheme' => ['http://example.com'];
+        yield 'wrong scheme' => ['ftp://example.com'];
         yield 'no scheme' => ['example.com'];
     }
 

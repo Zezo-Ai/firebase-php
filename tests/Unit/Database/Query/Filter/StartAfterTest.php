@@ -22,7 +22,7 @@ final class StartAfterTest extends UnitTestCase
     {
         $filter = new StartAfter($given);
 
-        $this->assertStringContainsString($expected, (string) $filter->modifyUri(new Uri('http://example.com')));
+        $this->assertStringContainsString($expected, (string) $filter->modifyUri(new Uri('https://example.com')));
     }
 
     public static function valueProvider(): Iterator

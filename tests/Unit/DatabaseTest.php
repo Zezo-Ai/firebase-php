@@ -64,7 +64,7 @@ final class DatabaseTest extends UnitTestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->database->getReferenceFromUrl('http://non-matching.example.com');
+        $this->database->getReferenceFromUrl('https://example.com');
     }
 
     #[Test]

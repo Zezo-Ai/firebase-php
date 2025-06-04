@@ -30,7 +30,7 @@ final class OrderByKeyTest extends UnitTestCase
     {
         $this->assertStringContainsString(
             'orderBy='.rawurlencode('"$key"'),
-            (string) $this->sorter->modifyUri(new Uri('http://example.com')),
+            (string) $this->sorter->modifyUri(new Uri('https://example.com')),
         );
     }
 

@@ -28,6 +28,6 @@ final class LimitToLastTest extends UnitTestCase
     {
         $filter = new LimitToLast(3);
 
-        $this->assertStringContainsString('limitToLast=3', (string) $filter->modifyUri(new Uri('http://example.com')));
+        $this->assertStringContainsString('limitToLast=3', (string) $filter->modifyUri(new Uri('https://example.com')));
     }
 }
