@@ -1,12 +1,11 @@
 name: Emulator Tests
 
 on:
-  pull_request:
+  pull_request_target:
+    types: [ opened, synchronize, reopened ]
     paths:
       - 'src/**'
       - 'tests/**'
-      - '.github/workflows/emulator-tests.yml'
-      - 'composer.json'
   push:
     branches: ['7.x']
     paths:
@@ -30,6 +29,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ (github.event_name == 'pull_request_target' && github.event.pull_request.head.sha) || github.sha }}
 
       - name: Setup cache environment
         id: extcache
