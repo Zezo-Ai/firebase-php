@@ -57,7 +57,9 @@ abstract class IntegrationTestCase extends FirebaseTestCase
             self::markTestSkipped('The integration tests require credentials');
         }
 
-        self::$serviceAccount = Json::decode($credentials, true);
+        /** @var ServiceAccountShape $serviceAccountArray */
+        $serviceAccountArray = Json::decode($credentials, true);
+        self::$serviceAccount = $serviceAccountArray;
 
         self::$factory = (new Factory())->withServiceAccount(self::$serviceAccount);
         self::$registrationTokens = self::registrationTokensFromEnvironment();

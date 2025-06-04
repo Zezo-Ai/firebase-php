@@ -32,7 +32,11 @@ final class FactoryTest extends UnitTestCase
     protected function setUp(): void
     {
         $this->serviceAccountFilePath = self::$fixturesDir.'/ServiceAccount/valid.json';
-        $this->serviceAccountArray = Json::decodeFile($this->serviceAccountFilePath, true);
+
+        /** @var ServiceAccountShape $serviceAccountArray */
+        $serviceAccountArray = Json::decodeFile($this->serviceAccountFilePath, true);
+
+        $this->serviceAccountArray = $serviceAccountArray;
     }
 
     #[DoesNotPerformAssertions]

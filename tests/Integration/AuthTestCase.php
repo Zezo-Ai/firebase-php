@@ -138,12 +138,13 @@ abstract class AuthTestCase extends IntegrationTestCase
     public function sendEmailVerificationLinkToDisabledUser(): void
     {
         $user = $this->createUserWithEmailAndPassword();
+        assert(is_string($user->email));
 
         try {
             $this->auth->disableUser($user->uid);
 
             $this->expectException(FailedToSendActionLink::class);
-            $this->auth->sendEmailVerificationLink((string) $user->email);
+            $this->auth->sendEmailVerificationLink($user->email);
         } finally {
             $this->auth->deleteUser($user->uid);
         }
@@ -217,14 +218,18 @@ abstract class AuthTestCase extends IntegrationTestCase
     public function getLocalizedEmailActionLink(): void
     {
         $user = $this->createUserWithEmailAndPassword();
-        $this->assertIsString($user->email);
+        assert(is_string($user->email));
 
-        $link = $this->auth->getEmailVerificationLink($user->email, null, 'fr');
+        try {
+            $link = $this->auth->getEmailVerificationLink($user->email, null, 'fr');
 
-        if (Util::authEmulatorHost() !== null) {
-            $this->assertStringNotContainsString('lang=fr', $link);
-        } else {
-            $this->assertStringContainsString('lang=fr', $link);
+            if (Util::authEmulatorHost() !== null) {
+                $this->assertStringNotContainsString('lang=fr', $link);
+            } else {
+                $this->assertStringContainsString('lang=fr', $link);
+            }
+        } finally {
+            $this->auth->deleteUser($user->uid);
         }
     }
 
@@ -794,20 +799,30 @@ abstract class AuthTestCase extends IntegrationTestCase
     {
         $result = $this->auth->signInAnonymously();
 
-        $idToken = $result->idToken();
+        $uid = $result->firebaseUserId();
+        $this->assertIsString($uid);
 
+        $idToken = $result->idToken();
         $this->assertIsString($idToken);
+
+        $decodedIdToken = $this->auth->parseToken($idToken);
+
         $this->assertNull($result->accessToken());
         $this->assertIsString($result->refreshToken());
         $this->assertIsString($result->firebaseUserId());
 
         $token = $this->auth->parseToken($idToken);
 
-        $this->assertIsString($uid = $token->claims()->get('sub'));
-        $user = $this->auth->getUser($uid);
-        $this->addToAssertionCount(1);
+        $uid = $token->claims()->get('sub');
 
-        $this->auth->deleteUser($user->uid);
+        $this->assertIsString($uid);
+        $this->assertNotEmpty($uid);
+
+        // This should not throw an exception because the user exists
+        $this->auth->getUser($uid);
+
+        // Clean up
+        $this->auth->deleteUser($uid);
     }
 
     #[Test]

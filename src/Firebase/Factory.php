@@ -147,24 +147,36 @@ final class Factory
      */
     public function withServiceAccount(string|array $value): self
     {
-        $serviceAccount = $value;
-
         if (is_string($value) && str_starts_with($value, '{')) {
             try {
+                /** @var ServiceAccountShape $serviceAccount */
                 $serviceAccount = Json::decode($value, true);
             } catch (UnexpectedValueException $e) {
                 throw new InvalidArgumentException('Invalid service account: '.$e->getMessage(), $e->getCode(), $e);
             }
-        } elseif (is_string($value)) {
+
+            $factory = clone $this;
+            $factory->serviceAccount = $serviceAccount;
+
+            return $factory;
+        }
+
+        if (is_string($value)) {
             try {
+                /** @var ServiceAccountShape $serviceAccount */
                 $serviceAccount = Json::decodeFile($value, true);
+
+                $factory = clone $this;
+                $factory->serviceAccount = $serviceAccount;
+
+                return $factory;
             } catch (UnexpectedValueException $e) {
                 throw new InvalidArgumentException('Invalid service account: '.$e->getMessage(), $e->getCode(), $e);
             }
         }
 
         $factory = clone $this;
-        $factory->serviceAccount = $serviceAccount;
+        $factory->serviceAccount = $value;
 
         return $factory;
     }
@@ -708,10 +720,12 @@ final class Factory
                 return null;
             }
 
-            $this->serviceAccount = Json::decode($googleApplicationCredentials, true);
+            /** @var ServiceAccountShape $serviceAccount */
+            $serviceAccount = Json::decode($googleApplicationCredentials, true);
+
+            $this->serviceAccount = $serviceAccount;
         }
 
-        /** @phpstan-ignore return.type */
         return $this->serviceAccount;
     }
 

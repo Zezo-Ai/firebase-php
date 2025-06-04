@@ -396,7 +396,13 @@ final class RemoteConfigTest extends IntegrationTestCase
             $this->fail('The template has no version');
         }
 
-        $nextButNonExisting = (int) (string) $currentVersion->versionNumber() + 100;
+        $version = $currentVersion->versionNumber();
+        $versionString = $version->__toString();
+        $versionNumber = (int) $versionString;
+
+        $this->assertGreaterThan(0, $versionNumber);
+
+        $nextButNonExisting = $versionNumber + 100;
 
         $this->expectException(VersionNotFound::class);
         $this->remoteConfig->getVersion($nextButNonExisting);
