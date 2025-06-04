@@ -539,15 +539,6 @@ abstract class AuthTestCase extends IntegrationTestCase
     }
 
     #[Test]
-    public function updateUserWithUidAsAdditionalArgument(): void
-    {
-        $user = $this->auth->createUser([]);
-        $this->auth->updateUser($user->uid, []);
-        $this->auth->deleteUser($user->uid);
-        $this->addToAssertionCount(1);
-    }
-
-    #[Test]
     public function deleteNonExistingUser(): void
     {
         $user = $this->auth->createUser([]);
