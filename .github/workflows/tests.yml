@@ -16,6 +16,9 @@ on:
       - 'composer.json'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   tests:
     name: "PHP ${{ matrix.php }}, ${{ matrix.dependencies }} deps"

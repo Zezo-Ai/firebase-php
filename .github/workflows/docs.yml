@@ -20,6 +20,9 @@ on:
     types: [published]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   links:
     name: Check Links

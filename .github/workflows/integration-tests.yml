@@ -15,6 +15,9 @@ on:
       - 'composer.json'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   integration-tests:
     name: Integration Tests
