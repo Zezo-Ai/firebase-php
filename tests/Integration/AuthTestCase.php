@@ -796,8 +796,6 @@ abstract class AuthTestCase extends IntegrationTestCase
         $idToken = $result->idToken();
         $this->assertIsString($idToken);
 
-        $decodedIdToken = $this->auth->parseToken($idToken);
-
         $this->assertNull($result->accessToken());
         $this->assertIsString($result->refreshToken());
         $this->assertIsString($result->firebaseUserId());
