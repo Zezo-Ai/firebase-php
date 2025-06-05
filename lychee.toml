@@ -13,7 +13,8 @@ exclude = [
     "gserviceaccount.com",
     ".link",
     '^https://firebase-php\.readthedocs\.io/?$',
-    '^https://github.com/pulls'
+    '^https://github.com/pulls',
+    '^https://stackoverflow.com' # Since recently returns a 403 for some reason
 ]
 
 exclude_paths = [
