@@ -28,4 +28,8 @@
             <directory>src/Firebase/DynamicLink</directory>
         </exclude>
     </source>
+
+    <php>
+        <ini name="date.timezone" value="UTC" />
+    </php>
 </phpunit>
