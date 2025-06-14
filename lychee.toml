@@ -12,6 +12,7 @@ exclude = [
     "googleapis.com",
     "gserviceaccount.com",
     ".link",
+    '^https://codecov.io',
     '^https://firebase-php\.readthedocs\.io/?$',
     '^https://github.com/pulls',
     '^https://stackoverflow.com' # Since recently returns a 403 for some reason
