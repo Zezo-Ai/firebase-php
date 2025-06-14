@@ -27,7 +27,7 @@ jobs:
     if: github.actor != 'dependabot[bot]'
 
     env:
-      php-version: '8.3'
+      php-version: '8.4'
       extensions: ctype, dom, grpc, json, mbstring, openssl, xml, zip, zlib
       key: cache-emulators-7x-83-v1
 
