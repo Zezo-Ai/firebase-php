@@ -35,6 +35,10 @@ Please read about the future of the Firebase Admin PHP SDK on the
   }
   ```
 
+### Deprecated
+
+* `Kreait\Firebase\Factory::getDebugInfo`
+
 ## [7.19.0] - 2025-06-14
 
 ### Added

@@ -504,6 +504,9 @@ final class Factory
     }
 
     /**
+     * @deprecated 7.20.0
+     * @codeCoverageIgnore
+     *
      * @return array{
      *     credentialsType: string|null,
      *     databaseUrl: string,
