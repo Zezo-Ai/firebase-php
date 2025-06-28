@@ -95,11 +95,13 @@ final class Factory
      */
     private ?string $projectId = null;
 
-    private CacheItemPoolInterface $verifierCache;
+    private CacheItemPoolInterface $defaultCache;
 
-    private CacheItemPoolInterface $authTokenCache;
+    private ?CacheItemPoolInterface $verifierCache = null;
 
-    private CacheItemPoolInterface $keySetCache;
+    private ?CacheItemPoolInterface $authTokenCache = null;
+
+    private ?CacheItemPoolInterface $keySetCache = null;
 
     private ClockInterface $clock;
 
@@ -135,10 +137,9 @@ final class Factory
     public function __construct()
     {
         $this->clock = SystemClock::create();
+
+        $this->defaultCache = new InMemoryCache($this->clock);
         $this->httpFactory = new HttpFactory();
-        $this->verifierCache = new InMemoryCache($this->clock);
-        $this->authTokenCache = new InMemoryCache($this->clock);
-        $this->keySetCache = new InMemoryCache($this->clock);
         $this->httpClientOptions = HttpClientOptions::default();
     }
 
@@ -272,6 +273,17 @@ final class Factory
         return $factory;
     }
 
+    /**
+     * A cache instance to use when more specific caches are not set.
+     */
+    public function withDefaultCache(CacheItemPoolInterface $cache): self
+    {
+        $factory = clone $this;
+        $factory->defaultCache = $cache;
+
+        return $factory;
+    }
+
     public function withVerifierCache(CacheItemPoolInterface $cache): self
     {
         $factory = clone $this;
@@ -365,7 +377,7 @@ final class Factory
             'https://firebaseappcheck.googleapis.com/v1/jwks',
             new Client($this->httpClientOptions->guzzleConfig()),
             $this->httpFactory,
-            $this->keySetCache,
+            $this->keySetCache ?? $this->defaultCache,
             21600,
             true,
         );
@@ -549,8 +561,8 @@ final class Factory
             'projectId' => $projectId,
             'serviceAccount' => $this->getServiceAccount(),
             'tenantId' => $this->tenantId,
-            'tokenCacheType' => $this->authTokenCache::class,
-            'verifierCacheType' => $this->verifierCache::class,
+            'tokenCacheType' => $this->authTokenCache !== null ? $this->authTokenCache::class : $this->defaultCache::class,
+            'verifierCacheType' => $this->verifierCache !== null ? $this->verifierCache::class : $this->defaultCache::class,
         ];
     }
 
@@ -592,7 +604,7 @@ final class Factory
         $projectId = $this->getProjectId();
         $cachePrefix = 'kreait_firebase_'.$projectId;
 
-        $credentials = new FetchAuthTokenCache($credentials, ['prefix' => $cachePrefix], $this->authTokenCache);
+        $credentials = new FetchAuthTokenCache($credentials, ['prefix' => $cachePrefix], $this->authTokenCache ?? $this->defaultCache);
         $authTokenHandler = HttpHandlerFactory::build(new Client($config));
 
         $handler->push(new AuthTokenMiddleware($credentials, $authTokenHandler));
@@ -616,7 +628,7 @@ final class Factory
     {
         $config = [
             'projectId' => $this->getProjectId(),
-            'authCache' => $this->authTokenCache,
+            'authCache' => $this->authTokenCache ?? $this->defaultCache,
         ];
 
         $credentials = $this->getGoogleAuthTokenCredentials();
@@ -690,7 +702,7 @@ final class Factory
 
     private function createIdTokenVerifier(): IdTokenVerifier
     {
-        $verifier = IdTokenVerifier::createWithProjectIdAndCache($this->getProjectId(), $this->verifierCache);
+        $verifier = IdTokenVerifier::createWithProjectIdAndCache($this->getProjectId(), $this->verifierCache ?? $this->defaultCache);
 
         if ($this->tenantId === null) {
             return $verifier;
@@ -701,7 +713,7 @@ final class Factory
 
     private function createSessionCookieVerifier(): SessionCookieVerifier
     {
-        return SessionCookieVerifier::createWithProjectIdAndCache($this->getProjectId(), $this->verifierCache);
+        return SessionCookieVerifier::createWithProjectIdAndCache($this->getProjectId(), $this->verifierCache ?? $this->defaultCache);
     }
 
     /**

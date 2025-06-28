@@ -34,6 +34,10 @@ Please read about the future of the Firebase Admin PHP SDK on the
       $user = $auth->getUserByProviderUid('google.com', 'google-uid');
   }
   ```
+* The new method `Kreait\Firebase\Factory::withDefaultCache()` allows you to set a default cache
+  implementation for the SDK. This is useful if you want to use one cache implementation for all components
+  that support caching.
+  ([Documentation](https://firebase-php.readthedocs.io/en/latest/setup.html#caching))
 
 ### Deprecated
 

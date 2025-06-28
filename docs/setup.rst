@@ -102,52 +102,32 @@ Realtime Database URI
 Caching
 *******
 
-Authentication tokens
-=====================
+The SDK, by default, uses a single in-memory cache for all components that support caching, so you can re-use them
+within the current process.
 
-Before connecting to the Firebase APIs, the SDK fetches an authentication token for your credentials.
-This authentication token is cached in-memory so that it can be re-used during the same process.
-
-If you want to cache authentication tokens more effectively, you can provide any
-`implementation of psr/cache <https://packagist.org/providers/psr/cache-implementation>`_ to the
-Firebase factory when creating your Firebase instance.
-
-.. note::
-    Authentication tokens are cached in-memory by default. For Symfony and Laravel,
-    the Framework's cache will automatically be used.
-
-For Symfony and Laravel, the Framework's cache will automatically be used.
-
-Here is an example using the `Symfony Cache Component <https://symfony.com/doc/current/components/cache.html>`_:
+If you want to cache data more effectively, you can provide any
+`implementation of psr/cache <https://packagist.org/providers/psr/cache-implementation>`_ to the Firebase factory. By
+using a persistent cache, you can avoid unnecessary API requests.
 
 .. code-block:: php
 
-        use Symfony\Component\Cache\Simple\FilesystemCache;
+    use Symfony\Component\Cache\Simple\FilesystemCache;
 
-        $factory = $factory->withAuthTokenCache(new FilesystemCache());
+    // One Cache instance for all components
+    $factory = $factory->withDefaultCache(new FilesystemCache());
 
+    // Cache used for authentication tokens, so that they requests don't have to be re-authenticated
+    $factory = $factory->withAuthTokenCache(new FilesystemCache());
 
-ID Token Verification
-=====================
+    // Cache used to store JWKS (JSON Web Key Sets), so that they don't have to be fetched again
+    $factory = $factory->withKeySetCache(new FilesystemCache());
 
-In order to verify ID tokens, the verifier makes a call to fetch Firebase's currently available public keys.
-The keys are cached in memory by default.
-
-If you want to cache the public keys more effectively, you can provide any
-`implementation of psr/simple-cache <https://packagist.org/providers/psr/simple-cache-implementation>`_ to the
-Firebase factory when creating your Firebase instance.
+    // Cache used to store verified ID tokens and session cookies, so that they don't have to be verified again
+    $factory = $factory->withVerifierCache(new FilesystemCache());
 
 .. note::
-    Public keys tokens are cached in-memory by default. For Symfony and Laravel,
-    the Framework's cache will automatically be used.
-
-Here is an example using the `Symfony Cache Component <https://symfony.com/doc/current/components/cache.html>`_:
-
-.. code-block:: php
-
-        use Symfony\Component\Cache\Simple\FilesystemCache;
-
-        $factory = $factory->withVerifierCache(new FilesystemCache());
+    The example uses the `Symfony Cache Component <https://symfony.com/doc/current/components/cache.html>`_, but you
+    are, of course, free to use any other PSR-6 cache implementation.
 
 ********************
 End User Credentials

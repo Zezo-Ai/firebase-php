@@ -90,7 +90,7 @@
             "PHP_CS_FIXER_IGNORE_ENV=true vendor/bin/php-cs-fixer fix --diff --verbose"
         ],
         "docs": [
-            "cd docs && make html"
+            "cd docs && uv run make html"
         ],
         "pre-push": [
             "@rector-fix",
