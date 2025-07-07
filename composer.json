@@ -49,7 +49,7 @@
         "psr/log": "^1.1|^2.0|^3.0.2"
     },
     "require-dev": {
-        "php-cs-fixer/shim": "^3.75.0",
+        "php-cs-fixer/shim": "^3.81.0",
         "google/cloud-firestore": "^1.50.0",
         "phpstan/extension-installer": "^1.4.3",
         "phpstan/phpstan": "^2.1.17",
@@ -87,7 +87,7 @@
         ],
         "analyze": "@analyse",
         "cs": [
-            "PHP_CS_FIXER_IGNORE_ENV=true vendor/bin/php-cs-fixer fix --diff --verbose"
+            "vendor/bin/php-cs-fixer fix --diff --verbose"
         ],
         "docs": [
             "cd docs && uv run make html"
