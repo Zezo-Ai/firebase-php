@@ -8,6 +8,7 @@ use Beste\Clock\SystemClock;
 use Firebase\JWT\JWT;
 use Kreait\Firebase\Exception\AppCheck\InvalidAppCheckTokenOptions;
 use Psr\Clock\ClockInterface;
+use SensitiveParameter;
 
 /**
  * @internal
@@ -24,6 +25,7 @@ final class AppCheckTokenGenerator
      */
     public function __construct(
         private readonly string $clientEmail,
+        #[SensitiveParameter]
         private readonly string $privateKey,
         ?ClockInterface $clock = null,
     ) {
