@@ -16,6 +16,9 @@ return (new PhpCsFixer\Config())
         'concat_space' => [
             'spacing' => 'none',
         ],
+        'method_argument_space' => [
+            'attribute_placement' => 'same_line',
+        ],
         'no_unused_imports' => true,
         'ordered_imports' => [
             'imports_order' => [

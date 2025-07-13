@@ -25,8 +25,7 @@ final class AppCheckTokenGenerator
      */
     public function __construct(
         private readonly string $clientEmail,
-        #[SensitiveParameter]
-        private readonly string $privateKey,
+        #[SensitiveParameter] private readonly string $privateKey,
         ?ClockInterface $clock = null,
     ) {
         $this->clock = $clock ?? SystemClock::create();
