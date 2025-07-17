@@ -7,6 +7,8 @@ Please read about the future of the Firebase Admin PHP SDK on the
 
 ## [Unreleased]
 
+## [7.20.0] - 2025-07-18
+
 ### Added
 
 * You can now get a user by their federated identity provider (e.g. Google, Facebook, etc.) UID with
@@ -364,7 +366,8 @@ See **[UPGRADE-7.0](UPGRADE-7.0.md) for more details on the changes between 6.x 
 
 https://github.com/kreait/firebase-php/blob/6.9.6/CHANGELOG.md
 
-[Unreleased]: https://github.com/kreait/firebase-php/compare/7.19.0...7.x
+[Unreleased]: https://github.com/kreait/firebase-php/compare/7.20.0...7.x
+[7.20.0]: https://github.com/kreait/firebase-php/compare/7.19.0...7.20.0
 [7.19.0]: https://github.com/kreait/firebase-php/compare/7.18.0...7.19.0
 [7.18.0]: https://github.com/kreait/firebase-php/compare/7.17.0...7.18.0
 [7.17.0]: https://github.com/kreait/firebase-php/compare/7.16.1...7.17.0
