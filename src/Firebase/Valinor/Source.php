@@ -30,7 +30,7 @@ final class Source implements IteratorAggregate
             return new self(BaseSource::iterable($value));
         }
 
-        if (str_starts_with((string) $value, '{')) {
+        if (str_starts_with((string) $value, '{') || str_starts_with((string) $value, '[')) {
             try {
                 return new self(BaseSource::json($value));
             } catch (Throwable $e) {
