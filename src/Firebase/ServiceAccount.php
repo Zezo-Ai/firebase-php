@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase;
 
-use SensitiveParameter;
-
 /**
  * @internal
+ *
+ * @todo Add #[SensitiveParameter] attributes once the minimum required PHP version is >=8.2
  */
 final class ServiceAccount
 {
@@ -15,27 +15,27 @@ final class ServiceAccount
         /** @var non-empty-string */
         public string $type,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $projectId,
+        public string $projectId,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $clientEmail,
+        public string $clientEmail,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $clientId,
+        public string $clientId,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $privateKey,
+        public string $privateKey,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $privateKeyId,
+        public string $privateKeyId,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $authUri,
+        public string $authUri,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $tokenUri,
+        public string $tokenUri,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $authProviderX509CertUrl,
+        public string $authProviderX509CertUrl,
         /** @var non-empty-string */
-        #[SensitiveParameter] public string $clientX509CertUrl,
+        public string $clientX509CertUrl,
         /** @var non-empty-string|null */
-        #[SensitiveParameter] public ?string $quotaProjectId = null,
+        public ?string $quotaProjectId = null,
         /** @var non-empty-string|null */
-        #[SensitiveParameter] public ?string $universeDomain = null,
+        public ?string $universeDomain = null,
     ) {
     }
 }

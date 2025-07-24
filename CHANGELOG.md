@@ -7,6 +7,10 @@ Please read about the future of the Firebase Admin PHP SDK on the
 
 ## [Unreleased]
 
+### Fixed
+
+* Removed the `#[SensitiveParameter]` attribute because it's not supported in PHP 8.1.
+
 ## [7.21.0] - 2025-07-23
 
 ### Changed
