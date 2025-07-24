@@ -7,6 +7,8 @@ Please read about the future of the Firebase Admin PHP SDK on the
 
 ## [Unreleased]
 
+## [7.21.1] - 2025-07-24
+
 ### Fixed
 
 * Removed the `#[SensitiveParameter]` attribute because it's not supported in PHP 8.1.
@@ -378,7 +380,8 @@ See **[UPGRADE-7.0](UPGRADE-7.0.md) for more details on the changes between 6.x 
 
 https://github.com/kreait/firebase-php/blob/6.9.6/CHANGELOG.md
 
-[Unreleased]: https://github.com/kreait/firebase-php/compare/7.21.0...7.x
+[Unreleased]: https://github.com/kreait/firebase-php/compare/7.21.1...7.x
+[7.21.1]: https://github.com/kreait/firebase-php/compare/7.21.0...7.21.1
 [7.21.0]: https://github.com/kreait/firebase-php/compare/7.20.0...7.21.0
 [7.20.0]: https://github.com/kreait/firebase-php/compare/7.19.0...7.20.0
 [7.19.0]: https://github.com/kreait/firebase-php/compare/7.18.0...7.19.0
