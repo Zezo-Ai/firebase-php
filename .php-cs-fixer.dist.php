@@ -16,8 +16,12 @@ return (new PhpCsFixer\Config())
         'concat_space' => [
             'spacing' => 'none',
         ],
+        'fully_qualified_strict_types' => [
+            'import_symbols' => true,
+            'leading_backslash_in_global_namespace' => true,
+        ],
         'method_argument_space' => [
-            'attribute_placement' => 'same_line',
+            'attribute_placement' => 'standalone', // same_line can break PHP <8.2
         ],
         'no_unused_imports' => true,
         'ordered_imports' => [

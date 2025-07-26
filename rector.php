@@ -19,5 +19,5 @@ return RectorConfig::configure()
         earlyReturn: true,
         phpunitCodeQuality: true,
     )
-    ->withImportNames(removeUnusedImports: true)
+    ->withImportNames(importShortClasses: false, removeUnusedImports: true)
 ;
