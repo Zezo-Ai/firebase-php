@@ -91,7 +91,7 @@ class ApiClient
 
         return $this->requestApi($url, [
             'localId' => $uid,
-            'customAttributes' => JSON::encode((object) $claims),
+            'customAttributes' => Json::encode((object) $claims),
         ]);
     }
 
