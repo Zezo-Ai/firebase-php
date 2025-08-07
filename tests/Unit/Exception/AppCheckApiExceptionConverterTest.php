@@ -14,6 +14,7 @@ use Kreait\Firebase\Exception\AppCheck\ApiConnectionFailed;
 use Kreait\Firebase\Exception\AppCheck\AppCheckError;
 use Kreait\Firebase\Exception\AppCheck\PermissionDenied;
 use Kreait\Firebase\Exception\AppCheckApiExceptionConverter;
+use Kreait\Firebase\Http\ErrorResponseParser;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -30,7 +31,7 @@ final class AppCheckApiExceptionConverterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->converter = new AppCheckApiExceptionConverter();
+        $this->converter = new AppCheckApiExceptionConverter(new ErrorResponseParser());
     }
 
     #[Test]

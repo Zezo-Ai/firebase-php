@@ -15,6 +15,7 @@ use Kreait\Firebase\Exception\Database\DatabaseError;
 use Kreait\Firebase\Exception\Database\DatabaseNotFound;
 use Kreait\Firebase\Exception\Database\PermissionDenied;
 use Kreait\Firebase\Exception\DatabaseApiExceptionConverter;
+use Kreait\Firebase\Http\ErrorResponseParser;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -29,7 +30,7 @@ final class DatabaseApiExceptionConverterTest extends UnitTestCase
 
     protected function setUp(): void
     {
-        $this->converter = new DatabaseApiExceptionConverter();
+        $this->converter = new DatabaseApiExceptionConverter(new ErrorResponseParser());
         $this->request = new Request('GET', 'https://my-project.firebaseio.com');
     }
 

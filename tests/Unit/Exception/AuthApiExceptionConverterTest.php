@@ -27,6 +27,7 @@ use Kreait\Firebase\Exception\Auth\UserDisabled;
 use Kreait\Firebase\Exception\Auth\UserNotFound;
 use Kreait\Firebase\Exception\Auth\WeakPassword;
 use Kreait\Firebase\Exception\AuthApiExceptionConverter;
+use Kreait\Firebase\Http\ErrorResponseParser;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
@@ -42,7 +43,7 @@ final class AuthApiExceptionConverterTest extends UnitTestCase
 
     protected function setUp(): void
     {
-        $this->converter = new AuthApiExceptionConverter();
+        $this->converter = new AuthApiExceptionConverter(new ErrorResponseParser());
     }
 
     #[Test]
