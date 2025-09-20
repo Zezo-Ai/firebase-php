@@ -21,9 +21,9 @@ package. You can enable the component in the SDK by adding the package to your p
 Before you start, please read about Firestore in the official documentation:
 
 - `Official Documentation <https://firebase.google.com/docs/firestore/>`_
-- `google/cloud-firestore on GitHub <https://github.com/googleapis/google-cloud-php-firestore>`_
-- `PHP API Documentation <https://googleapis.github.io/google-cloud-php/#/docs/cloud-firestore>`_
-- `PHP Usage Examples <https://github.com/GoogleCloudPlatform/php-docs-samples/tree/master/firestore>`_
+- `google/cloud-firestore on GitHub <https://github.com/GoogleCloudPlatform/php-docs-samples/tree/main/firestore>`_
+- `PHP API Documentation <https://cloud.google.com/php/docs/reference/cloud-storage/latest>`_
+- `PHP Usage Examples <https://github.com/GoogleCloudPlatform/php-docs-samples/tree/main/firestore>`_
 
 ************************************
 Initializing the Firestore component
@@ -80,4 +80,4 @@ You can add additional configuration options for the Firestore Client used by th
         ->createFirestore();
 
 You can find all configuration options in the source code of the ``FirestoreClient`` class of the
-`official Google Firestore PHP library <https://github.com/googleapis/google-cloud-php-firestore/blob/4186f2a2f2a8bdaedf19376a35ccb0ffad17f4e1/src/FirestoreClient.php#L138>`_.
+`official Google Firestore PHP library <https://github.com/googleapis/google-cloud-php-firestore/blob/eff55c22a5b2fa03a062e6735895d5549fb57631/src/FirestoreClient.php#L106>`_.

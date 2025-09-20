@@ -105,7 +105,7 @@ You are probably not using the latest release of the SDK, please update your com
 Call to undefined function ``openssl_sign()``
 *********************************************
 
-You need to install the OpenSSL PHP Extension: http://php.net/openssl
+You need to install the OpenSSL PHP Extension: https://www.php.net/openssl
 
 ********************************************
 Default sound not played on message delivery
@@ -154,7 +154,7 @@ which should lead to an output similar to this:
 
 Now check if the file given in the ``default_cert_file`` field actually exists.
 Create a backup of the file, download the current CA bundle from
-https://curl.haxx.se/ca/cacert.pem and put it where ``default_cert_file``
+https://curl.se/ca/cacert.pem and put it where ``default_cert_file``
 points to.
 
 If the problem still occurs, another possible solution is to configure the ``curl.cainfo``
@@ -205,7 +205,7 @@ code:
 
     echo curl_version()['version']; exit;
 
-To install a newer version of cURL, download the latest release from https://curl.haxx.se/ . From
+To install a newer version of cURL, download the latest release from https://curl.se/. From
 the unpacked archive in the ``bin`` folder, use the file ending with ``libcurl*.dll`` to overwrite
 the existing ``libcurl*.dll`` in the ``ext`` folder of your PHP installation and restart the
 environment.

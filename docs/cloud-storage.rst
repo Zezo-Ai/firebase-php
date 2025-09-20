@@ -12,8 +12,8 @@ Before you start, please read about Firebase Cloud Storage in the official docum
 
 - `Firebase Cloud Storage <https://firebase.google.com/docs/storage/>`_
 - `Introduction to the Admin Cloud Storage API <https://firebase.google.com/docs/storage/admin/start>`_
-- `PHP API Documentation <https://googleapis.github.io/google-cloud-php/#/docs/cloud-storage>`_
-- `PHP Usage examples <https://github.com/GoogleCloudPlatform/php-docs-samples/blob/master/storage>`_
+- `PHP API Documentation <https://cloud.google.com/php/docs/reference/cloud-storage/latest>`_
+- `PHP Usage examples <https://github.com/GoogleCloudPlatform/php-docs-samples/tree/main/storage>`_
 
 **********************************
 Initializing the Storage component

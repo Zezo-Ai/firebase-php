@@ -13,7 +13,7 @@ Before you start, please read about Firebase Authentication in the official docu
 Before you can access the Firebase Realtime Database from a server using the Firebase Admin SDK,
 you must authenticate your server with Firebase. When you authenticate a server, rather than
 sign in with a user account's credentials as you would in a client app, you authenticate
-with a `service account <https://developers.google.com/identity/protocols/OAuth2ServiceAccount>`_
+with a `service account <https://developers.google.com/identity/protocols/oauth2/service-account>`_
 which identifies your server to Firebase.
 
 You can get two different levels of access when you authenticate using the Firebase Admin SDK:
@@ -70,7 +70,7 @@ the auth / request.auth objects in your Security Rules:
 
 .. note::
     This library uses `lcobucci/jwt <https://github.com/lcobucci/jwt>`_ to work with JSON Web Tokens (JWT).
-    You can find the usage instructions at `https://lcobucci-jwt.readthedocs.io/ <https://lcobucci-jwt.readthedocs.io/>`_.
+    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/.
 
 .. _verify-a-firebase-id-token:
 
@@ -124,7 +124,7 @@ Parameter                    Type              Description
 
 .. note::
     This library uses `lcobucci/jwt <https://github.com/lcobucci/jwt>`_ to work with JSON Web Tokens (JWT).
-    You can find the usage instructions at `https://lcobucci-jwt.readthedocs.io/ <https://lcobucci-jwt.readthedocs.io/>`_.
+    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/.
 
 
 ***************************
@@ -217,7 +217,7 @@ Sign In with IdP credentials
 IdP (Identity Provider) credentials are credentials provided by authentication providers other than Firebase,
 for example Facebook, Github, Google or Twitter. You can find the currently supported authentication providers
 in the
-`official Firebase documentation <https://firebase.google.com/docs/projects/provisioning/configure-oauth#add-idp>`_.
+`official Firebase documentation <https://firebase.google.com/docs/auth/configure-oauth-rest-api#add-idp>`_.
 
 This could be useful if you already have "Sign in with X" implemented in your application, and want to
 authenticate the same user with Firebase.
@@ -285,7 +285,7 @@ If the check fails, a ``RevokedIdToken`` exception will be thrown.
     by setting up Firebase Rules that check for revocation rather than using the Admin SDK to make the check.
 
     For more information, please visit
-    `Google: Detect ID token revocation in Database Rules <https://firebase.google.com/docs/auth/admin/manage-sessions#detect_id_token_revocation_in_database_rules>`_
+    `Google: Detect ID token revocation in Database Rules <https://firebase.google.com/docs/auth/admin/manage-sessions#detect_id_token_revocation_in>`_
 
 ***************
 Session Cookies
@@ -369,7 +369,7 @@ Parameter                    Type              Description
 
 .. note::
     This library uses `lcobucci/jwt <https://github.com/lcobucci/jwt>`_ to work with JSON Web Tokens (JWT).
-    You can find the usage instructions at `https://lcobucci-jwt.readthedocs.io/ <https://lcobucci-jwt.readthedocs.io/>`_.
+    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/.
 
 ****************
 Tenant Awareness
@@ -377,7 +377,7 @@ Tenant Awareness
 
 .. note::
     Multi-tenancy support requires Google Cloud's Identity Platform (GCIP). To learn more about GCIP,
-    including pricing and features, see the `GCIP documentation <https://cloud.google.com/identity-platform?hl=zh-Cn>`_.
+    including pricing and features, see the `GCIP documentation <https://cloud.google.com/security/products/identity-platform>`_.
 
     Before multi-tenancy can be used on a Google Cloud Identity Platform project, tenants must be allowed on that
     project via the Cloud Console UI.

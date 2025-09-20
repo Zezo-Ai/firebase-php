@@ -97,3 +97,12 @@ from pygments.lexers.web import PhpLexer
 lexers['php'] = PhpLexer(startinline=True, linenos=1)
 lexers['php-annotations'] = PhpLexer(startinline=True, linenos=1)
 
+# Link check
+linkcheck_allowed_redirects = {
+    r'https://console\.developers\.google\.com.*': r'https://accounts\.google\.com.*',
+    r'https://console\.firebase\.google\.com.*': r'https://accounts\.google\.com.*',
+    r'https://.+\.readthedocs\.io.+': r'https://.+\.readthedocs\.io.+',
+    r'https://stackoverflow\.com/a.+': r'https://stackoverflow\.com/questions.+',
+}
+linkcheck_anchors = False
+

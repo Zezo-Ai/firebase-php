@@ -51,7 +51,7 @@ List users
 **********
 
 To enhance performance and prevent memory issues when retrieving a huge amount of users,
-this methods returns a `Generator <http://php.net/manual/en/language.generators.overview.php>`_.
+this methods returns a `Generator <https://www.php.net/manual/en/language.generators.overview.php>`_.
 
 .. code-block:: php
 
@@ -388,7 +388,7 @@ Custom user claims
     // Remove a user's custom claims
     $auth->setCustomUserClaims($uid, null);
 
-The custom claims object should not contain any `OIDC <http://openid.net/specs/openid-connect-core-1_0.html#IDToken>`_
+The custom claims object should not contain any `OIDC <https://openid.net/specs/openid-connect-core-1_0.html#IDToken>`_
 reserved key names or Firebase reserved names. Custom claims payload must not exceed 1000 bytes.
 
 *************
@@ -525,7 +525,7 @@ when it is installed or from a browser.
 
 For links that are meant to be opened via a mobile app, you’ll need to enable Firebase Dynamic Links and perform some
 tasks to detect these links from your mobile app. Refer to the instructions on how to
-`configure Firebase Dynamic Links <https://firebase.google.com/docs/auth/web/passing-state-in-email-actions#configuring_firebase_dynamic_links>`_
+`configure Firebase Dynamic Links <https://firebase.google.com/docs/auth/web/passing-state-in-email-actions#configuring-hosting-links>`_
 for email actions.
 
 ========================= =========== ===========

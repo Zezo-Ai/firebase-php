@@ -43,7 +43,7 @@ privileged environments (such as servers or cloud) in PHP.
 Installation
 ************
 
-The recommended way to install the Firebase Admin SDK is with `Composer <http://getcomposer.org>`_.
+The recommended way to install the Firebase Admin SDK is with `Composer <https://getcomposer.org>`_.
 Composer is a dependency management tool for PHP that allows you to declare the dependencies
 your project needs and installs them into your project.
 
@@ -81,7 +81,7 @@ Quick Start
 License
 *******
 
-Licensed using the `MIT license <http://opensource.org/licenses/MIT>`_.
+Licensed using the `MIT license <https://opensource.org/license/MIT>`_.
 
     Copyright (c) Jérôme Gamez <https://github.com/jeromegamez> <jerome@gamez.name>
 

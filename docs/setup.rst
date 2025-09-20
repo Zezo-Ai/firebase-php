@@ -9,7 +9,7 @@ Google Service Account
 **********************
 
 In order to access a Firebase project using a server SDK, you must authenticate your requests to Firebase with
-`Service Account credentials <https://developers.google.com/identity/protocols/OAuth2ServiceAccount>`_.
+`Service Account credentials <https://developers.google.com/identity/protocols/oauth2/service-account>`_.
 
 The SDK is able to auto-discover the Service Account for your project in the following conditions:
 

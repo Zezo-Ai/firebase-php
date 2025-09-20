@@ -233,7 +233,7 @@ List versions
 -------------
 
 To enhance performance and prevent memory issues when retrieving a huge amount of versions,
-this methods returns a `Generator <http://php.net/manual/en/language.generators.overview.php>`_.
+this methods returns a `Generator <https://www.php.net/manual/en/language.generators.overview.php>`_.
 
 .. code-block:: php
 
