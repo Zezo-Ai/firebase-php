@@ -118,6 +118,5 @@ Your use of Firebase is governed by the `Terms of Service for Firebase Services 
    dynamic-links
    remote-config
    app-check
-   framework-integrations
    testing
    troubleshooting
