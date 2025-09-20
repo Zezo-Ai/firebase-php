@@ -26,37 +26,9 @@ For Firebase projects created before the March 7, 2018 release of the Remote Con
 Initializing the Remote Config component
 *****************************************
 
-.. tab-set::
+.. code-block:: php
 
-   .. tab-item:: SDK
-
-      .. code-block:: php
-
-         $remoteConfig = $factory->createRemoteConfig();
-
-   .. tab-item:: Symfony
-
-      See the `Symfony Bundle documentation <https://github.com/kreait/firebase-bundle>`_ for configuration details.
-
-      .. code-block:: php
-
-         use Kreait\Firebase\Contract\RemoteConfig;
-
-         class MyService
-         {
-             public function __construct(RemoteConfig $remoteConfig)
-             {
-                 $this->remoteConfig = $remoteConfig;
-             }
-         }
-
-   .. tab-item:: Laravel
-
-      See the `Laravel Package documentation <https://github.com/kreait/laravel-firebase>`_ for configuration details.
-
-      .. code-block:: php
-
-         $remoteConfig = app('firebase.remote_config');
+   $remoteConfig = $factory->createRemoteConfig();
 
 *********************
 Get the Remote Config

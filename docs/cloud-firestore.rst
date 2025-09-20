@@ -29,37 +29,9 @@ Before you start, please read about Firestore in the official documentation:
 Initializing the Firestore component
 ************************************
 
-.. tab-set::
+.. code-block:: php
 
-   .. tab-item:: SDK
-
-      .. code-block:: php
-
-         $firestore = $factory->createFirestore();
-
-   .. tab-item:: Symfony
-
-      See the `Symfony Bundle documentation <https://github.com/kreait/firebase-bundle>`_ for configuration details.
-
-      .. code-block:: php
-
-         use Kreait\Firebase\Contract\Firestore;
-
-         class MyService
-         {
-             public function __construct(Firestore $firestore)
-             {
-                 $this->firestore = $firestore;
-             }
-         }
-
-   .. tab-item:: Laravel
-
-      See the `Laravel Package documentation <https://github.com/kreait/laravel-firebase>`_ for configuration details.
-
-      .. code-block:: php
-
-         $firestore = app('firebase.firestore');
+   $firestore = $factory->createFirestore();
 
 ***************
 Getting started

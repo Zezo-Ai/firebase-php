@@ -37,23 +37,11 @@ the factory directly. To generate a private key file for your service account:
 
 You can then configure the SDK to use this Service Account:
 
-.. tab-set::
+.. code-block:: php
 
-   .. tab-item:: SDK
+   use Kreait\Firebase\Factory;
 
-      .. code-block:: php
-
-         use Kreait\Firebase\Factory;
-
-         $factory = (new Factory)->withServiceAccount('/path/to/firebase_credentials.json');
-
-   .. tab-item:: Symfony
-
-      See the `Symfony configuration documentation <https://github.com/kreait/firebase-bundle#configuration>`_ for setup details.
-
-   .. tab-item:: Laravel
-
-      See the `Laravel configuration documentation <https://github.com/kreait/laravel-firebase#configuration>`_ for setup details.
+   $factory = (new Factory)->withServiceAccount('/path/to/firebase_credentials.json');
 
 **********
 Project ID

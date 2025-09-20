@@ -33,38 +33,9 @@ limited by that rule.
 Initializing the Auth component
 *******************************
 
-.. tab-set::
+.. code-block:: php
 
-   .. tab-item:: SDK
-
-      .. code-block:: php
-
-         $auth = $factory->createAuth();
-
-   .. tab-item:: Symfony
-
-      See the `Symfony Bundle documentation <https://github.com/kreait/firebase-bundle>`_ for configuration details.
-
-      .. code-block:: php
-
-         use Kreait\Firebase\Contract\Auth;
-
-         class MyService
-         {
-             public function __construct(Auth $auth)
-             {
-                 $this->auth = $auth;
-             }
-         }
-
-   .. tab-item:: Laravel
-
-      See the `Laravel Package documentation <https://github.com/kreait/laravel-firebase>`_ for configuration details.
-
-      .. code-block:: php
-
-         $auth = app('firebase.auth');
-
+   $auth = $factory->createAuth();
 
 .. _create-custom-tokens:
 

@@ -14,38 +14,9 @@ Before you start, please read about Firebase App Check in the official documenta
 Initializing the App Check component
 ************************************
 
-.. tab-set::
+.. code-block:: php
 
-   .. tab-item:: SDK
-
-      .. code-block:: php
-
-         $appCheck = $factory->createAppCheck();
-
-   .. tab-item:: Symfony
-
-      See the `Symfony Bundle documentation <https://github.com/kreait/firebase-bundle>`_ for configuration details.
-
-      .. code-block:: php
-
-         use Kreait\Firebase\Contract\AppCheck;
-
-         class MyService
-         {
-             public function __construct(AppCheck $appCheck)
-             {
-                 $this->appCheck = $appCheck;
-             }
-         }
-
-   .. tab-item:: Laravel
-
-      See the `Laravel Package documentation <https://github.com/kreait/laravel-firebase>`_ for configuration details.
-
-      .. code-block:: php
-
-         $appCheck = app('firebase.app_check');
-
+   $appCheck = $factory->createAppCheck();
 
 .. _verify-app-check-tokens:
 

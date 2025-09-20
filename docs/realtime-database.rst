@@ -9,38 +9,9 @@ Realtime Database
 Initializing the Realtime Database component
 ********************************************
 
-.. tab-set::
+.. code-block:: php
 
-   .. tab-item:: SDK
-
-      .. code-block:: php
-
-         $database = $factory->createDatabase();
-
-   .. tab-item:: Symfony
-
-      See the `Symfony Bundle documentation <https://github.com/kreait/firebase-bundle>`_ for configuration details.
-
-      .. code-block:: php
-
-         use Kreait\Firebase\Contract\Database;
-
-         class MyService
-         {
-             public function __construct(Database $database)
-             {
-                 $this->database = $database;
-             }
-         }
-
-   .. tab-item:: Laravel
-
-      See the `Laravel Package documentation <https://github.com/kreait/laravel-firebase>`_ for configuration details.
-
-      .. code-block:: php
-
-         $database = app('firebase.database');
-
+   $database = $factory->createDatabase();
 
 ***************
 Retrieving data
