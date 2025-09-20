@@ -8,15 +8,6 @@ Troubleshooting
     order to get hold of the changes you made, you will have to use the result of
     that method, e.g. ``$changedObject = $object->withChangedProperty();``.
 
-*****************************************
-Sending FCM messages doesn't work anymore
-*****************************************
-
-When you are using the FCM component, and sending messages in batches using the
-``sendMulticast()`` or ``sendAll()`` methods result in errors like
-``Operation is not implemented, or supported, or enabled``, this means you are using an outdated
-version of the SDK. Please upgrade to the recent 7.x release of the SDK.
-
 **************
 Error handling
 **************
@@ -45,67 +36,6 @@ errors which are caused by the Google/Firebase APIs rejecting a request. Those e
 SDK and should be converted to instances of ``Kreait\Firebase\Exception\FirebaseException``.
 
 If you want to be sure to catch *any* error, catch ``Throwable``.
-
-************************************
-Call to private/undefined method ...
-************************************
-
-If you receive an error like
-
-.. code-block:: bash
-
-    Fatal error: Uncaught Error: Call to private method Kreait\Firebase\ServiceAccount::fromJsonFile()
-
-you have most likely followed a tutorial that is targeted at Version 4.x of this release and have code
-that looks like this:
-
-.. code-block:: php
-
-    $serviceAccount = ServiceAccount::fromJsonFile(__DIR__.'/google-service-account.json');
-    $firebase = (new Factory)
-        ->withServiceAccount($serviceAccount)
-        ->create();
-
-    $database = $firebase->getDatabase();
-
-Change it to the following:
-
-.. code-block:: php
-
-    $factory = (new Factory)->withServiceAccount(__DIR__.'/google-service-account.json');
-
-    $database = $factory->createDatabase();
-
-********************************
-PHP Parse Error/PHP Syntax Error
-********************************
-
-If you're getting an error in the likes of
-
-.. code-block:: bash
-
-    PHP Parse error: syntax error, unexpected ':', expecting ';' or '{' in ...
-
-the environment you are running the script in does not use PHP 7.x. You can check this
-by adding the line
-
-.. code-block:: php
-
-    echo phpversion(); exit;
-
-somewhere in your script.
-
-****************************************
-Class 'Kreait\\Firebase\\ ...' not found
-****************************************
-
-You are probably not using the latest release of the SDK, please update your composer dependencies.
-
-*********************************************
-Call to undefined function ``openssl_sign()``
-*********************************************
-
-You need to install the OpenSSL PHP Extension: https://www.php.net/openssl
 
 ********************************************
 Default sound not played on message delivery
@@ -235,38 +165,3 @@ responses will then be pushed to this logger with their full headers and bodies.
 
 If you want to make sure that the Factory has the configuration you expect it to have,
 call the ``getDebugInfo()`` method:
-
-.. code-block:: php
-
-    $factoryInfo = $factory->getDebugInfo();
-
-The output will be something like this:
-
-.. code-block::
-
-    Array
-    (
-        [credentialsType] => Google\Auth\Credentials\ServiceAccountCredentials
-        [databaseUrl] => https://project-id-default-rtdb.firebaseio.com
-        [defaultStorageBucket] =>
-        [projectId] => project-id
-        [serviceAccount] => Array
-            (
-                [type] => service_account
-                [project_id] => project-id
-                [private_key_id] => a1b2c3d4e5f6g7h8i9j0
-                [private_key] => {exists, redacted}
-                [client_email] => project-id-xyz@beste-firebase.iam.gserviceaccount.com
-                [client_id] => 1234567890987654321
-                [auth_uri] => https://accounts.google.com/o/oauth2/auth
-                [token_uri] => https://oauth2.googleapis.com/token
-                [auth_provider_x509_cert_url] => https://www.googleapis.com/oauth2/v1/certs
-                [client_x509_cert_url] => https://www.googleapis.com/robot/v1/metadata/x509/project-id-xyz%40beste-firebase.iam.gserviceaccount.com
-            )
-
-        [tenantId] =>
-        [tokenCacheType] => Google\Auth\Cache\MemoryCacheItemPool
-        [verifierCacheType] => Firebase\Auth\Token\Cache\InMemoryCache
-    )
-
-The private key of a service account will be redacted.
