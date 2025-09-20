@@ -4,7 +4,7 @@
 
 <img src="docs/_static/logo.svg" alt="Firebase Admin PHP SDK Logo" width="120">
 
-<p><em>An (unofficial) Firebase Admin SDK for PHP</em></p>
+<p><em>Firebase Admin SDK for PHP</em></p>
 
 [![Current version](https://img.shields.io/packagist/v/kreait/firebase-php.svg?logo=composer)](https://packagist.org/packages/kreait/firebase-php)
 [![Monthly Downloads](https://img.shields.io/packagist/dm/kreait/firebase-php.svg)](https://packagist.org/packages/kreait/firebase-php/stats)

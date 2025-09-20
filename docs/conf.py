@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Project information
-project = 'Firebase for PHP'
+project = 'Firebase Admin SDK for PHP'
 author = 'Jérôme Gamez'
 copyright = 'Jérôme Gamez'
 version = '7.x'
@@ -33,7 +33,7 @@ exclude_patterns = ['_build', '.venv']
 suppress_warnings = ['image.nonlocal_uri']
 
 # HTML theme and static files
-html_title = 'Firebase for PHP'
+html_title = 'Firebase Admin SDK for PHP'
 html_theme = 'furo'
 html_static_path = ['_static']
 html_css_files = ['custom.css']

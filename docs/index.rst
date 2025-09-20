@@ -1,16 +1,14 @@
-.. title:: Firebase for PHP
+.. title:: Firebase Admin SDK for PHP
 
-################
-Firebase for PHP
-################
+##########################
+Firebase Admin SDK for PHP
+##########################
 
 .. raw:: html
 
    <div align="center">
 
-      <p><img src="_static/logo.svg" alt="Firebase for PHP Logo" width="120"></p>
-
-      <p><em>An (unofficial) Firebase Admin SDK for PHP</em></p>
+      <p><img src="_static/logo.svg" alt="Firebase Admin SDK for PHP Logo" width="120"></p>
 
       <p>
          <a href="https://packagist.org/packages/kreait/firebase-php"><img src="https://img.shields.io/packagist/v/kreait/firebase-php.svg?logo=composer" alt="Current version"></a>
