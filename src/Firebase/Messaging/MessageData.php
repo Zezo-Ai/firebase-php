@@ -67,7 +67,7 @@ final class MessageData implements JsonSerializable
     }
 
     /**
-     * @see https://firebase.google.com/docs/cloud-messaging/concept-options#data_messages
+     * @see https://firebase.google.com/docs/cloud-messaging/customize-messages/set-message-type#data-messages
      *
      * @param non-empty-string $key
      *

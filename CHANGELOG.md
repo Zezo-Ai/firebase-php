@@ -86,7 +86,7 @@ If it saves you or your team time, please consider [sponsoring its development](
 * You can now save on method call by passing a custom Firestore database name to
   `Kreait\Firebase\Factory::createFirestore($databaseName)` instead of having to chain
   ``::withFirestoreDatabase($databaseName)->createFirestore()``
-* It is now possible to set [live activity tokens](https://firebase.google.com/docs/cloud-messaging/ios/live-activity)
+* It is now possible to set [live activity tokens](https://firebase.google.com/docs/cloud-messaging/customize-messages/live-activity?hl=en)
   in Apns configs.
 * `Kreait\Firebase\Http\HttpClientOptions::withGuzzleMiddleware()` and
   `Kreait\Firebase\Http\HttpClientOptions::withGuzzleMiddlewares()` now accept callable strings, in addition

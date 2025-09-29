@@ -309,7 +309,6 @@ You can find the full Android configuration reference in the official documentat
 
     use Kreait\Firebase\Messaging\AndroidConfig;
 
-    // Example from https://firebase.google.com/docs/cloud-messaging/admin/send-messages#android_specific_fields
     $config = AndroidConfig::fromArray([
         'ttl' => '3600s',
         'priority' => 'normal',
@@ -334,7 +333,6 @@ You can find the full APNs configuration reference in the official documentation
 
     use Kreait\Firebase\Messaging\ApnsConfig;
 
-    // Example from https://firebase.google.com/docs/cloud-messaging/admin/send-messages#apns_specific_fields
     $config = ApnsConfig::fromArray([
         'headers' => [
             'apns-priority' => '10',
@@ -364,7 +362,6 @@ You can find the full WebPush configuration reference in the official documentat
 
     use Kreait\Firebase\Messaging\WebPushConfig;
 
-    // Example from https://firebase.google.com/docs/cloud-messaging/admin/send-messages#webpush_specific_fields
     $config = WebPushConfig::fromArray([
         'notification' => [
             'title' => '$GOOG up 1.43% on the day',
@@ -433,7 +430,7 @@ The SDK provides helper methods to define the priority of a message.
 
 .. note::
     You can learn more about message priorities for the different target platforms at
-    `Setting the priority of a message <https://firebase.google.com/docs/cloud-messaging/concept-options#setting-the-priority-of-a-message>`_
+    `Setting the priority of a message <https://firebase.google.com/docs/cloud-messaging/customize-messages/setting-message-priority>`_
     in the official Firebase documentation.
 
 .. note::

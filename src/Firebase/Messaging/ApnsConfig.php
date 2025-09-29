@@ -163,7 +163,7 @@ final class ApnsConfig implements JsonSerializable
     }
 
     /**
-     * @see https://firebase.google.com/docs/cloud-messaging/ios/live-activity
+     * @see https://firebase.google.com/docs/cloud-messaging/customize-messages/live-activity?hl=en
      * @param non-empty-string $liveActivityToken
     */
     public function withLiveActivityToken(string $liveActivityToken): self

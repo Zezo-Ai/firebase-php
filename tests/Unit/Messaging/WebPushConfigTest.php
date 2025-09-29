@@ -78,7 +78,6 @@ final class WebPushConfigTest extends UnitTestCase
     {
         yield 'full_config' => [
             [
-                // https://firebase.google.com/docs/cloud-messaging/admin/send-messages#webpush_specific_fields
                 'headers' => [
                     'Urgency' => 'normal',
                 ],

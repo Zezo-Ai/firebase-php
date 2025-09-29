@@ -128,7 +128,6 @@ final class ApnsConfigTest extends UnitTestCase
     public static function validDataProvider(): Iterator
     {
         yield 'full_config' => [[
-            // https://firebase.google.com/docs/cloud-messaging/admin/send-messages#apns_specific_fields
             'headers' => [
                 'apns-priority' => '10',
             ],

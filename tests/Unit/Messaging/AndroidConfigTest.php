@@ -87,7 +87,6 @@ final class AndroidConfigTest extends UnitTestCase
     public static function validDataProvider(): Iterator
     {
         yield 'full_config' => [[
-            // https://firebase.google.com/docs/cloud-messaging/admin/send-messages#android_specific_fields
             'ttl' => '3600s',
             'priority' => 'normal',
             'notification' => [
