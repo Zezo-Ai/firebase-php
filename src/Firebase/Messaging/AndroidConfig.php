@@ -268,7 +268,7 @@ final class AndroidConfig implements JsonSerializable
         }
 
         if (preg_match('/^\d+$/', $value) === 1) {
-            return sprintf('%ds', $value);
+            return sprintf('%ss', $value);
         }
 
         if (preg_match($expectedPattern, $value) === 1) {
