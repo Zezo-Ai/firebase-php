@@ -63,7 +63,7 @@ final class MessageData implements JsonSerializable
 
     private static function isBinary(string $value): bool
     {
-        return mb_detect_encoding($value, (array) mb_detect_order(), true) === false;
+        return mb_detect_encoding($value, mb_detect_order(), true) === false;
     }
 
     /**
