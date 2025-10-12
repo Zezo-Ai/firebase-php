@@ -5,6 +5,10 @@ If it saves you or your team time, please consider [sponsoring its development](
 
 ## [Unreleased]
 
+## [7.23.0] - 2025-10-13
+
+* Require `cuyz/valinor:^2.2.1` for better mapping.
+
 ## [7.22.0] - 2025-09-21
 
 ### Added
