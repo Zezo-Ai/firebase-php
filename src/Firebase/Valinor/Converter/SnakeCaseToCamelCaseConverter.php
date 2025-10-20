@@ -15,7 +15,7 @@ final class SnakeCaseToCamelCaseConverter
 {
     /**
      * @template T of object
-     * @param array<mixed> $value
+     * @param array<mixed> $values
      * @param callable(array<mixed>): T $next
      * @return T
      */
