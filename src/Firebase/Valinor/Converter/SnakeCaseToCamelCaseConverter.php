@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Valinor\Converter;
 
+use Kreait\Firebase\Valinor\Source;
 use Traversable;
 
 /**
@@ -15,7 +16,7 @@ final class SnakeCaseToCamelCaseConverter
 {
     /**
      * @template T of object
-     * @param array<mixed> $values
+     * @param Source|array<mixed> $values
      * @param callable(array<mixed>): T $next
      * @return T
      */
