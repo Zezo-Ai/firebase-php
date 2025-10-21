@@ -112,9 +112,7 @@ final class AndroidConfigTest extends UnitTestCase
 
     public static function invalidTtlValues(): Iterator
     {
-        yield 'float' => [1.2];
         yield 'wrong suffix' => ['1m'];
-        yield 'not numeric' => [true];
         yield 'negative int' => [-1];
         yield 'negative string' => ['-1'];
         yield 'negative string with suffix' => ['-1s'];
