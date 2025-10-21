@@ -47,4 +47,29 @@ final class QueryTest extends DatabaseTestCase
 
         $this->assertSame(['key' => 3], current($value));
     }
+
+    #[Test]
+    public function orderByChild(): void
+    {
+        $ref = $this->ref->getChild(__FUNCTION__);
+
+        $rules = self::$db->getRuleSet()->getRules();
+
+        $rules['rules'][$this->ref->getPath()] = [
+            __FUNCTION__ => [
+                '.indexOn' => ['child/grandchild']
+            ],
+        ];
+        self::$db->updateRules(RuleSet::fromArray($rules));
+
+        $ref->getChild('first')->set(['child' => ['grandchild' => 3]]);
+        $ref->getChild('second')->set(['child' => ['grandchild' => 4]]);
+        $ref->getChild('third')->set(['child' => ['grandchild' => 1]]);
+        $ref->getChild('fourth')->set(['child' => ['grandchild' => 2]]);
+
+        $check = $ref->orderByChild('child/grandchild')->getValue();
+        $keys = array_keys($check);
+
+        $this->assertSame(['third', 'fourth', 'first', 'second'], $keys);
+    }
 }
