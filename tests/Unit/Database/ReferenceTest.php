@@ -7,7 +7,6 @@ namespace Kreait\Firebase\Tests\Unit\Database;
 use GuzzleHttp\Psr7\Uri;
 use Kreait\Firebase\Database\ApiClient;
 use Kreait\Firebase\Database\Reference;
-use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\Exception\OutOfRangeException;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\Test;
@@ -75,13 +74,6 @@ final class ReferenceTest extends UnitTestCase
         $child = $this->reference->getChild('child');
 
         $this->assertSame('parent/key/child', $child->getPath());
-    }
-
-    #[Test]
-    public function getInvalidChild(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->reference->getChild('#');
     }
 
     #[Test]

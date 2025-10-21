@@ -5,6 +5,12 @@ If it saves you or your team time, please consider [sponsoring its development](
 
 ## [Unreleased]
 
+### Changed
+
+* Realtime Database references are now validated by the API instead of locally. Validation rules can change at any time,
+  and the SDK can only adapt to changes in the API. While local checks could prevent obviously invalid paths, they’d
+  also require an SDK update whenever Firebase loosens a rule. Developers can be trusted not to use invalid paths 😅.
+
 ## [7.23.0] - 2025-10-13
 
 * Require `cuyz/valinor:^2.2.1` for better mapping.

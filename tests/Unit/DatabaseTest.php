@@ -45,13 +45,6 @@ final class DatabaseTest extends UnitTestCase
     }
 
     #[Test]
-    public function getReferenceWithInvalidPath(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->database->getReference('#');
-    }
-
-    #[Test]
     public function getReferenceFromUrl(): void
     {
         $url = $this->url.'/foo/bar';
