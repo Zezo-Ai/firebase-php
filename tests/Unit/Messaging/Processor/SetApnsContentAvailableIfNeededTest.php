@@ -37,6 +37,9 @@ final class SetApnsContentAvailableIfNeededTest extends TestCase
 
         $processed = Json::decode(Json::encode(($this->processor)($message)), true);
 
+        $this->assertArrayHasKey('apns', $processed);
+        $this->assertArrayHasKey('payload', $processed['apns']);
+        $this->assertArrayHasKey('aps', $processed['apns']['payload']);
         $this->assertArrayHasKey('content-available', $processed['apns']['payload']['aps']);
         $this->assertSame(1, $processed['apns']['payload']['aps']['content-available']);
     }

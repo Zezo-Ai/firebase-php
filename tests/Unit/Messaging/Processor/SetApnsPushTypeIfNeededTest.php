@@ -36,6 +36,8 @@ final class SetApnsPushTypeIfNeededTest extends TestCase
 
         $processed = Json::decode(Json::encode(($this->processor)($message)), true);
 
+        $this->assertArrayHasKey('apns', $processed);
+        $this->assertArrayHasKey('headers', $processed['apns']);
         $this->assertArrayHasKey('apns-push-type', $processed['apns']['headers']);
         $this->assertSame($expected, $processed['apns']['headers']['apns-push-type']);
     }

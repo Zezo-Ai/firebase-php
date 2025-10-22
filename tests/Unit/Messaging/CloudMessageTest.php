@@ -139,10 +139,16 @@ final class CloudMessageTest extends TestCase
 
         $fromObject = CloudMessage::new()->withData(MessageData::fromArray($data));
         $serializedFromObject = Json::decode(Json::encode($fromObject), true);
+
+        $this->assertArrayHasKey('data', $serializedFromObject);
+        $this->assertArrayHasKey('key', $serializedFromObject['data']);
         $this->assertSame('value', $serializedFromObject['data']['key']);
 
         $fromArray = CloudMessage::new()->withData($data);
         $serializedFromArray = Json::decode(Json::encode($fromArray), true);
+
+        $this->assertArrayHasKey('data', $serializedFromArray);
+        $this->assertArrayHasKey('key', $serializedFromArray['data']);
         $this->assertSame('value', $serializedFromArray['data']['key']);
 
         $this->assertSame($serializedFromObject, $serializedFromArray);

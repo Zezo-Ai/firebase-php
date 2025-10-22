@@ -73,9 +73,11 @@ final class TransactionTest extends DatabaseTestCase
             $secondSnapshot = $transaction->snapshot($secondRef);
 
             $firstCurrentValue = $firstSnapshot->getValue() ?? 0;
+            assert(is_int($firstCurrentValue));
             $newFirstValue = ++$firstCurrentValue;
 
             $secondCurrentValue = $secondSnapshot->getValue() ?? 0;
+            assert(is_int($secondCurrentValue));
             $newSecondValue = ++$secondCurrentValue;
 
             // Set the value without a transaction
