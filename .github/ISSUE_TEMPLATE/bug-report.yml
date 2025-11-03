@@ -12,11 +12,7 @@ body:
 
         This issue form is for reporting bugs only. Please provide as much information as possible. If a problem cannot be reproduced or understood, your issue may be closed as non-actionable.
 
-        This project is covered with unit- and integration tests and successfully used in many projects. If an error seemingly related to this library occurs in your project, it's most likely not because of this library.
-  - type: markdown
-    attributes:
-      value: |
-        ###
+        This project is covered with unit- and integration tests and successfully used in many projects. If an error related to this library occurs in your project, please create a pull request with a failing test to prove the error falls in scope of the library.
   - type: textarea
     attributes:
       label: Describe the bug
@@ -29,7 +25,11 @@ body:
       description: |
         You can generate a list with `composer show`.
         This can help with finding outdated dependencies or known conflicts.
-      render: json
+        Please make sure to wrap the output in code fences for better readability 🙏🏻.
+      value: |
+        ```
+        # Paste output here
+        ```
     validations:
       required: true
   - type: textarea
@@ -38,7 +38,11 @@ body:
       description: |
         You can generate a list with `composer show --platform`.
         This can help with finding missing, outdated or conflicting PHP versions and extensions.
-      render: shell
+        Please make sure to wrap the output in code fences for better readability 🙏🏻.
+      value: |
+        ```
+        # Paste output here
+        ```
     validations:
       required: true
   - type: textarea
@@ -49,6 +53,7 @@ body:
         Please use code blocks for better readability.
         Please note that bugs without minimal reproductions can be closed as non-actionable.
         If single, self-contained code snippets are not sufficient, please provide the link to a git Repository visualising the issue.
+        Please make sure to wrap code in code fences for better readability 🙏🏻.
 
       value: |
         ```shell
@@ -67,11 +72,12 @@ body:
     attributes:
       label: Error message/Stack trace
       description: |
-        If a stack trace is available, please include it in full, or type `-`
-      render: shell
-    validations:
-      required: true
-
+        If a stack trace is available, please include it in full.
+        Please make sure to wrap the output in code fences for better readability 🙏🏻.
+      value: |
+        ```
+        # Paste output here
+        ```
   - type: textarea
     attributes:
       label: Additional information
