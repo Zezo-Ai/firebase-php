@@ -524,7 +524,7 @@ final class Factory
     public function createStorage(): Contract\Storage
     {
         try {
-            $storageClient = new StorageClient($this->googleCloudClientConfig()); // @phpstan-ignore method.deprecated
+            $storageClient = new StorageClient($this->googleCloudClientConfig());
         } catch (Throwable $e) {
             throw new RuntimeException('Unable to create a StorageClient: '.$e->getMessage(), $e->getCode(), $e);
         }
