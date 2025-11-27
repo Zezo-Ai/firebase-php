@@ -5,6 +5,8 @@ If it saves you or your team time, please consider [sponsoring its development](
 
 ## [Unreleased]
 
+## [7.24.0] - 2025-11-27
+
 ### Changed
 
 * Realtime Database references are now validated by the API instead of locally. Validation rules can change at any time,
@@ -413,7 +415,9 @@ See **[UPGRADE-7.0](UPGRADE-7.0.md) for more details on the changes between 6.x 
 
 https://github.com/kreait/firebase-php/blob/6.9.6/CHANGELOG.md
 
-[Unreleased]: https://github.com/kreait/firebase-php/compare/7.22.0...7.x
+[Unreleased]: https://github.com/kreait/firebase-php/compare/7.24.0...7.x
+[7.24.0]: https://github.com/kreait/firebase-php/compare/7.23.0...7.24.0
+[7.23.0]: https://github.com/kreait/firebase-php/compare/7.22.0...7.23.0
 [7.22.0]: https://github.com/kreait/firebase-php/compare/7.21.2...7.22.0
 [7.21.2]: https://github.com/kreait/firebase-php/compare/7.21.1...7.21.2
 [7.21.1]: https://github.com/kreait/firebase-php/compare/7.21.0...7.21.1
