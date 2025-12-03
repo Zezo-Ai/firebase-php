@@ -1,6 +1,4 @@
-exclude_path = ["./vendor", "./docs/_build"]
-
-headers = ["accept=*/*"]
+header = { "accept" = "text/html" }
 
 scheme = ["https"]
 
@@ -18,7 +16,7 @@ exclude = [
     '^https://stackoverflow.com' # Since recently returns a 403 for some reason
 ]
 
-exclude_paths = [
+exclude_path = [
     "./docs/_build",
     ".vendor"
 ]
