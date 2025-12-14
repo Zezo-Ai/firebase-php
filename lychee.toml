@@ -13,7 +13,11 @@ exclude = [
     '^https://codecov.io',
     '^https://firebase-php\.readthedocs\.io/?$',
     '^https://github.com/pulls',
-    '^https://stackoverflow.com' # Since recently returns a 403 for some reason
+    '^https://stackoverflow.com', # Since recently returns a 403 for some reason
+    '^https://console.firebase.google.com',
+    '^https://console.cloud.google.com',
+    '^https://jb.gg',
+    '^https://picsum.photos',
 ]
 
 exclude_path = [

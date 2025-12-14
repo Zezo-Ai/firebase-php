@@ -495,7 +495,7 @@ You can handle both cases with the SDK:
     it can also be abused by malicious actors to discover the email addresses registered by your users.
 
     To mitigate this risk, Firebase recommends you
-    `enable email enumeration protection <https://cloud.google.com/identity-platform/docs/admin/email-enumeration-protection>`_
+    `enable email enumeration protection <https://docs.cloud.google.com/identity-platform/docs/admin/email-enumeration-protection>`_
     for your project using the Google Cloud ``gcloud`` tool. Note that enabling this feature changes
     Firebase Authentication's error reporting behavior: be sure your app doesn't rely on the more specific errors.
 

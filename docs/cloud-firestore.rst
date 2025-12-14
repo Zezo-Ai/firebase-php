@@ -22,7 +22,7 @@ Before you start, please read about Firestore in the official documentation:
 
 - `Official Documentation <https://firebase.google.com/docs/firestore/>`_
 - `google/cloud-firestore on GitHub <https://github.com/GoogleCloudPlatform/php-docs-samples/tree/main/firestore>`_
-- `PHP API Documentation <https://cloud.google.com/php/docs/reference/cloud-storage/latest>`_
+- `PHP API Documentation <https://docs.cloud.google.com/php/docs/reference/cloud-storage/latest>`_
 - `PHP Usage Examples <https://github.com/GoogleCloudPlatform/php-docs-samples/tree/main/firestore>`_
 
 ************************************

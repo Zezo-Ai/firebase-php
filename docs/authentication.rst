@@ -70,7 +70,7 @@ the auth / request.auth objects in your Security Rules:
 
 .. note::
     This library uses `lcobucci/jwt <https://github.com/lcobucci/jwt>`_ to work with JSON Web Tokens (JWT).
-    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/.
+    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/en/stable/.
 
 .. _verify-a-firebase-id-token:
 
@@ -124,7 +124,7 @@ Parameter                    Type              Description
 
 .. note::
     This library uses `lcobucci/jwt <https://github.com/lcobucci/jwt>`_ to work with JSON Web Tokens (JWT).
-    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/.
+    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/en/stable/.
 
 
 ***************************
@@ -369,7 +369,7 @@ Parameter                    Type              Description
 
 .. note::
     This library uses `lcobucci/jwt <https://github.com/lcobucci/jwt>`_ to work with JSON Web Tokens (JWT).
-    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/.
+    You can find the usage instructions at https://lcobucci-jwt.readthedocs.io/en/stable/.
 
 ****************
 Tenant Awareness
