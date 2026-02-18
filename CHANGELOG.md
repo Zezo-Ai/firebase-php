@@ -5,6 +5,8 @@ If it saves you or your team time, please consider [sponsoring its development](
 
 ## [Unreleased]
 
+* Added support for `firebase/php-jwt:^7.0.2` to remediate the vulnerabilities [PKSA-y2cr-5h3j-g3ys](https://github.com/advisories/GHSA-2x45-7fc3-mxwq) and [CVE-2025-4659](https://nvd.nist.gov/vuln/detail/CVE-2025-45769).
+
 ### Changed
 
 * `Factory::withHttpLogger()` and `Factory::withHttpDebugLogger()` have been deprecated. If you're using these methods,
